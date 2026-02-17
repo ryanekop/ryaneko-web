@@ -6,58 +6,70 @@ import Link from 'next/link';
 import { motion } from "framer-motion";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
+import { useI18n } from "@/lib/i18n";
 
-const apps = [
-  {
-    name: "RAW File Copy Tool",
-    description: "Tool otomatis untuk filter JPEG dan RAW berdasarkan teks input.",
-    icon: "/raw-file-copy-tool.png",
-    status: "active",
-    link: "#"
-  },
-  {
-    name: "Fastpik",
-    description: "Tool untuk mempermudah kamu dalam memilih foto.",
-    icon: "/fastpik.png",
-    status: "active",
-    link: "https://fastpik.ryanekoapp.web.id"
-  },
-  {
-    name: "Realtime Upload Pro",
-    description: "Tool untuk mengotomatisasi upload secara otomatis ke Google Drive.",
-    icon: "/realtime-upload-pro.png",
-    status: "active",
-    link: "#"
-  },
-  {
-    name: "Photo Split Express",
-    description: "Tool untuk memisahkan RAW & JPEG secara otomatis.",
-    icon: "/photo-split-express.png",
-    status: "active",
-    link: "#"
-  },
-  {
-    name: "Auto Export LrC Plugin",
-    description: "Tool untuk auto export foto dalam mode tether dengan settingan export (preset, frame, dll).",
-    icon: "/lightroom-plugin.png",
-    status: "active",
-    link: "#"
-  },
-  {
-    name: "Client Management",
-    description: "Coming Soon.",
-    icon: null,
-    status: "coming-soon",
-    link: null
-  }
-];
+type AppKey = "rawFileCopyTool" | "fastpik" | "realtimeUploadPro" | "photoSplitExpress" | "autoExportLrC" | "clientManagement";
+
+const apps: {
+  name: string;
+  key: AppKey;
+  icon: string | null;
+  status: string;
+  link: string | null;
+  iconScale?: string;
+}[] = [
+    {
+      name: "RAW File Copy Tool",
+      key: "rawFileCopyTool",
+      icon: "/raw-file-copy-tool.png",
+      status: "active",
+      link: "#"
+    },
+    {
+      name: "Fastpik",
+      key: "fastpik",
+      icon: "/fastpik.png",
+      status: "active",
+      link: "https://fastpik.ryanekoapp.web.id"
+    },
+    {
+      name: "Realtime Upload Pro",
+      key: "realtimeUploadPro",
+      icon: "/realtime-upload-pro.png",
+      status: "active",
+      link: "#",
+      iconScale: "scale-[1.35]"
+    },
+    {
+      name: "Photo Split Express",
+      key: "photoSplitExpress",
+      icon: "/photo-split-express.png",
+      status: "active",
+      link: "#",
+      iconScale: "scale-[1.35]"
+    },
+    {
+      name: "Auto Export LrC Plugin",
+      key: "autoExportLrC",
+      icon: "/lightroom-plugin.png",
+      status: "active",
+      link: "#"
+    },
+    {
+      name: "Client Management",
+      key: "clientManagement",
+      icon: null,
+      status: "coming-soon",
+      link: null
+    }
+  ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08 // Faster stagger to feel more "together"
+      staggerChildren: 0.08
     }
   }
 };
@@ -76,6 +88,8 @@ const itemVariants = {
 };
 
 export default function Home() {
+  const { t } = useI18n();
+
   return (
     <div className="flex flex-col min-h-screen font-sans bg-background text-foreground transition-colors duration-300">
 
@@ -110,7 +124,7 @@ export default function Home() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-5xl sm:text-7xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent"
           >
-            Ryan Eko Apps
+            {t.heroTitle}
           </motion.h1>
           <motion.p
             initial={{ y: 15, opacity: 0 }}
@@ -118,7 +132,7 @@ export default function Home() {
             transition={{ delay: 0.15, duration: 0.6, ease: "easeOut" }}
             className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-balance"
           >
-            Kumpulan tools profesional untuk fotografer dan videografer. Tingkatkan produktivitas workflow mu dengan aplikasi kami.
+            {t.heroDescription}
           </motion.p>
         </div>
       </section>
@@ -149,7 +163,7 @@ export default function Home() {
                         src={app.icon}
                         alt={app.name}
                         fill
-                        className="object-cover"
+                        className={`object-contain ${app.iconScale || ''}`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     ) : (
@@ -163,7 +177,7 @@ export default function Home() {
                   )}
                   {app.status === 'coming-soon' && (
                     <span className="px-3 py-1 text-xs font-medium rounded-full bg-accent text-accent-foreground">
-                      Coming Soon
+                      {t.comingSoon}
                     </span>
                   )}
                 </div>
@@ -172,7 +186,7 @@ export default function Home() {
                   {app.name}
                 </h3>
                 <p className="text-muted-foreground text-sm flex-grow leading-relaxed">
-                  {app.description}
+                  {t.apps[app.key].description}
                 </p>
 
                 {app.link && app.status === 'active' && (
@@ -190,7 +204,7 @@ export default function Home() {
       <footer className="py-12 border-t border-border mt-auto">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm text-muted-foreground mb-4">
-            &copy; {new Date().getFullYear()} Ryan Eko Apps. All rights reserved.
+            &copy; {new Date().getFullYear()} Ryan Eko Apps. {t.footer}
           </p>
           <div className="flex justify-center gap-6 text-muted-foreground">
             <a href="https://instagram.com/ryanekopram" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-2">

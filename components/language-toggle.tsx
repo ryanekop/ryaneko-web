@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { Globe, Check } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -10,10 +9,10 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useI18n } from "@/lib/i18n"
 
 export function LanguageToggle() {
-    // Simple state since full i18n isn't set up yet, but UI is requested
-    const [lang, setLang] = React.useState("id")
+    const { locale, setLocale } = useI18n()
 
     return (
         <DropdownMenu>
@@ -24,13 +23,13 @@ export function LanguageToggle() {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setLang("id")} className="cursor-pointer justify-between">
+                <DropdownMenuItem onClick={() => setLocale("id")} className="cursor-pointer justify-between">
                     Indonesia
-                    {lang === "id" && <Check className="h-4 w-4 ml-2" />}
+                    {locale === "id" && <Check className="h-4 w-4 ml-2" />}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLang("en")} className="cursor-pointer justify-between">
+                <DropdownMenuItem onClick={() => setLocale("en")} className="cursor-pointer justify-between">
                     English
-                    {lang === "en" && <Check className="h-4 w-4 ml-2" />}
+                    {locale === "en" && <Check className="h-4 w-4 ml-2" />}
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
