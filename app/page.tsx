@@ -196,8 +196,8 @@ export default function Home() {
             <a href="https://instagram.com/ryanekopram" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-2">
               <Instagram className="w-4 h-4" /> @ryanekopram
             </a>
-            <a href="https://instagram.com/ryaneko.apps" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-2">
-              <Instagram className="w-4 h-4" /> @ryaneko.apps
+            <a href="https://instagram.com/ryanekoapps" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-2">
+              <Instagram className="w-4 h-4" /> @ryanekoapps
             </a>
           </div>
         </div>
