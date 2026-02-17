@@ -103,7 +103,7 @@ export default function Home() {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 font-bold text-xl tracking-tight">
             <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-border/10">
-              <Image src="/ryaneko-logo.png" alt="Ryan Eko Apps" fill className="object-cover" />
+              <Image src="/ryaneko-logo.png" alt="Ryan Eko Apps" width={64} height={64} className="object-cover w-full h-full" priority />
             </div>
             Ryan Eko Apps
           </div>
@@ -162,9 +162,10 @@ export default function Home() {
                       <Image
                         src={app.icon}
                         alt={app.name}
-                        fill
-                        className={`object-contain ${app.iconScale || ''}`}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        width={128}
+                        height={128}
+                        loading="lazy"
+                        className={`object-contain w-full h-full ${app.iconScale || ''}`}
                       />
                     ) : (
                       <Clock className="w-8 h-8 text-muted-foreground" />
