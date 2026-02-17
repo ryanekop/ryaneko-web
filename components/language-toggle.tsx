@@ -1,6 +1,6 @@
 "use client"
 
-import { Globe, Check } from "lucide-react"
+import { Languages } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -18,18 +18,22 @@ export function LanguageToggle() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="icon" className="cursor-pointer">
-                    <Globe className="h-[1.2rem] w-[1.2rem]" />
-                    <span className="sr-only">Choose language</span>
+                    <Languages className="h-[1.2rem] w-[1.2rem]" />
+                    <span className="sr-only">Switch language</span>
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setLocale("id")} className="cursor-pointer justify-between">
-                    Indonesia
-                    {locale === "id" && <Check className="h-4 w-4 ml-2" />}
+                <DropdownMenuItem
+                    onClick={() => setLocale("id")}
+                    className={`cursor-pointer ${locale === "id" ? "bg-accent" : ""}`}
+                >
+                    Bahasa Indonesia
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLocale("en")} className="cursor-pointer justify-between">
+                <DropdownMenuItem
+                    onClick={() => setLocale("en")}
+                    className={`cursor-pointer ${locale === "en" ? "bg-accent" : ""}`}
+                >
                     English
-                    {locale === "en" && <Check className="h-4 w-4 ml-2" />}
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
