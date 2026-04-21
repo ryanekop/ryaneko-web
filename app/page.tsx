@@ -23,7 +23,7 @@ const apps: {
       key: "rawFileCopyTool",
       icon: "/raw-file-copy-tool.png",
       status: "active",
-      link: "#"
+      link: "/raw-file-copy-tool"
     },
     {
       name: "Fastpik",

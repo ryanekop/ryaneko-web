@@ -18,6 +18,65 @@ interface PurchaseNoticePageTranslation {
     productLabels: string[];
 }
 
+interface RawFileCopyFeatureTranslation {
+    title: string;
+    description: string;
+}
+
+interface RawFileCopyStepTranslation {
+    title: string;
+    description: string;
+}
+
+interface RawFileCopySocialCardTranslation {
+    title: string;
+    description: string;
+    cta: string;
+}
+
+interface RawFileCopyToolPageTranslation {
+    badge: string;
+    overviewBadge: string;
+    highlightsBadge: string;
+    workflowBadge: string;
+    instagramBadge: string;
+    previewTitle: string;
+    heroTitle: string;
+    heroDescription: string;
+    heroChips: string[];
+    platformLabel: string;
+    platforms: string[];
+    problemTitle: string;
+    problemBody: string;
+    aboutTitle: string;
+    aboutBody: string;
+    formatTitle: string;
+    formats: string[];
+    featuresTitle: string;
+    features: RawFileCopyFeatureTranslation[];
+    workflowTitle: string;
+    workflowSteps: RawFileCopyStepTranslation[];
+    extraFeaturesTitle: string;
+    extraFeaturesIntro: string;
+    extraFeatures: string[];
+    updateTitle: string;
+    updateBadge: string;
+    updateVersionLabel: string;
+    updateSummary: string;
+    updateHighlights: string[];
+    socialTitle: string;
+    socialDescription: string;
+    socialFallbackTitle: string;
+    socialFallbackDescription: string;
+    socialCards: RawFileCopySocialCardTranslation[];
+    finalCtaTitle: string;
+    finalCtaDescription: string;
+    buyButtonLabel: string;
+    updateButtonLabel: string;
+    afterBuyButtonLabel: string;
+    backHomeLabel: string;
+}
+
 interface Translations {
     heroTitle: string;
     heroDescription: string;
@@ -48,6 +107,7 @@ interface Translations {
         bundle: PurchaseNoticePageTranslation;
         rawFileCopyTool: PurchaseNoticePageTranslation;
     };
+    rawFileCopyToolPage: RawFileCopyToolPageTranslation;
 }
 
 const translations: Record<Locale, Translations> = {
@@ -202,6 +262,133 @@ const translations: Record<Locale, Translations> = {
                 productLabels: ["RAW File Copy Tool"],
             },
         },
+        rawFileCopyToolPage: {
+            badge: "RAW Workflow Tool",
+            overviewBadge: "Overview",
+            highlightsBadge: "Product highlights",
+            workflowBadge: "Workflow",
+            instagramBadge: "Instagram",
+            previewTitle: "Preview produk",
+            heroTitle:
+                "Filter file JPEG/RAW berdasarkan teks, lalu copy atau move hasilnya dalam hitungan detik.",
+            heroDescription:
+                "RAW File Copy Tool membantu fotografer mempercepat workflow setelah klien selesai memilih foto. Masukkan daftar nama file, referensi folder JPEG, atau sumber lain, lalu aplikasi akan mencari file yang cocok dan menyalin atau memindahkannya ke folder tujuan tanpa ribet.",
+            heroChips: [
+                "Copy & Move",
+                "Text / JPEG / Google Drive",
+                "Photographer-ready",
+            ],
+            platformLabel: "Tersedia untuk",
+            platforms: ["macOS", "Windows", "Android"],
+            problemTitle: "Solusi cepat untuk workflow seleksi file RAW",
+            problemBody:
+                "Daripada cari file satu per satu dari ribuan foto, kamu bisa pakai teks input atau daftar referensi untuk memfilter file yang cocok. Cocok untuk alur kerja setelah klien memilih JPEG dan kamu perlu menyiapkan file RAW untuk proses edit berikutnya.",
+            aboutTitle: "Apa Itu RAW File Copy Tool?",
+            aboutBody:
+                "Ini adalah aplikasi yang dirancang untuk membaca daftar nama file, list JPEG, atau referensi lain, lalu mencocokkan file JPEG/RAW berdasarkan teks. Setelah ketemu, file yang cocok bisa langsung disalin atau dipindahkan ke folder tujuan yang kamu pilih.",
+            formatTitle: "Format yang didukung",
+            formats: ["ARW", "CR2", "CR3", "NEF", "NRW", "RAF", "RW2", "ORF", "PEF", "DNG", "JPG"],
+            featuresTitle: "Fitur unggulan",
+            features: [
+                {
+                    title: "Pencarian super cepat",
+                    description:
+                        "Mencocokkan file berdasarkan input teks dengan dukungan format RAW populer dan JPEG.",
+                },
+                {
+                    title: "Multi-platform",
+                    description:
+                        "Tersedia untuk macOS, Windows, dan Android agar workflow bisa tetap jalan di perangkat yang kamu pakai.",
+                },
+                {
+                    title: "Mode Copy & Move",
+                    description:
+                        "Pilih apakah file yang cocok ingin disalin ke folder baru atau langsung dipindahkan.",
+                },
+                {
+                    title: "Update checker",
+                    description:
+                        "Bisa cek pembaruan supaya kamu lebih mudah tetap memakai versi terbaru aplikasi.",
+                },
+                {
+                    title: "Aman & presisi",
+                    description:
+                        "Hanya file yang cocok dengan input yang diproses, jadi workflow lebih rapi dan minim salah ambil file.",
+                },
+                {
+                    title: "Interface simpel",
+                    description:
+                        "Desainnya langsung fokus ke pekerjaan utama tanpa langkah yang bertele-tele.",
+                },
+            ],
+            workflowTitle: "Cara kerja 3 langkah",
+            workflowSteps: [
+                {
+                    title: "Pilih folder sumber RAW",
+                    description:
+                        "Tentukan folder tempat semua file RAW atau file asalmu berada sebelum proses dimulai.",
+                },
+                {
+                    title: "Pilih folder tujuan",
+                    description:
+                        "Tentukan lokasi hasil file yang akan disalin atau dipindah agar output langsung rapi.",
+                },
+                {
+                    title: "Masukkan list lalu jalankan",
+                    description:
+                        "Masukkan daftar nama file, teks pilihan klien, atau referensi lain, lalu jalankan mode copy atau move.",
+                },
+            ],
+            extraFeaturesTitle: "Fitur tambahan dari aplikasi",
+            extraFeaturesIntro:
+                "Beberapa fitur praktis yang sudah muncul di resource aplikasi dan membuat workflow lebih fleksibel:",
+            extraFeatures: [
+                "Text List",
+                "JPEG Folder",
+                "Google Drive",
+                "Search in Subfolders",
+                "Keep folder structure",
+                "Folder picker mengingat folder terakhir",
+            ],
+            updateTitle: "Update v2.7.2",
+            updateBadge: "Update terbaru",
+            updateVersionLabel: "Apa yang baru di v2.7.2",
+            updateSummary:
+                "Versi ini fokus pada perbaikan tampilan dan pengalaman penggunaan, terutama untuk ukuran window minimum, mode portrait/landscape, dan kestabilan layout.",
+            updateHighlights: [
+                "Perbaikan dan optimasi ukuran minimum window untuk mode landscape dan portrait.",
+                "Toggle portrait/landscape ditambahkan ke menu bar.",
+                "Input mode picker sekarang rata kanan tanpa stretching.",
+                "Perbaikan enforcement minimum size window menggunakan NSWindowDelegate.",
+            ],
+            socialTitle: "Lihat demo / postingan",
+            socialDescription:
+                "Dua postingan singkat ini bisa bantu kasih gambaran cepat soal cara kerja dan value dari RAW File Copy Tool.",
+            socialFallbackTitle: "Buka langsung di Instagram",
+            socialFallbackDescription:
+                "Fallback ini tetap bisa dipakai kalau browser memblokir embed atau script Instagram belum termuat.",
+            socialCards: [
+                {
+                    title: "Workflow lebih cepat",
+                    description:
+                        "Sortir file dari list pilihan klien tidak perlu lagi makan waktu berjam-jam. RAW File Copy Tool bisa bantu copy atau move file otomatis hanya dari list teks.",
+                    cta: "Lihat di Instagram",
+                },
+                {
+                    title: "Filter file otomatis",
+                    description:
+                        "Aplikasi ini bisa bantu baca input list, mendeteksi nomor file, mengenali file ganda, dan mempercepat pencarian RAW dari kumpulan file yang besar.",
+                    cta: "Lihat di Instagram",
+                },
+            ],
+            finalCtaTitle: "Siap mempercepat workflow RAW kamu?",
+            finalCtaDescription:
+                "Pakai halaman ini sebagai pintu utama informasi produk, lalu arahkan user ke pembelian, update terbaru, atau panduan setelah pembelian sesuai kebutuhan mereka.",
+            buyButtonLabel: "Beli RAW File Copy Tool",
+            updateButtonLabel: "Info Update v2.7.2",
+            afterBuyButtonLabel: "Sudah beli? Lihat panduan",
+            backHomeLabel: "Kembali ke home",
+        },
     },
     en: {
         heroTitle: "Ryan Eko Apps",
@@ -353,6 +540,133 @@ const translations: Record<Locale, Translations> = {
                     "Save the serial number, then use the download link and install tutorial from that email. During the first activation, make sure the device is connected to the internet.",
                 productLabels: ["RAW File Copy Tool"],
             },
+        },
+        rawFileCopyToolPage: {
+            badge: "RAW Workflow Tool",
+            overviewBadge: "Overview",
+            highlightsBadge: "Product highlights",
+            workflowBadge: "Workflow",
+            instagramBadge: "Instagram",
+            previewTitle: "Product preview",
+            heroTitle:
+                "Filter JPEG/RAW files by text, then copy or move the matched results in seconds.",
+            heroDescription:
+                "RAW File Copy Tool helps photographers speed up the workflow after clients finish selecting photos. Enter a file list, use a JPEG reference folder, or pull from another source, then let the app match the right files and send them to your destination folder without the tedious manual work.",
+            heroChips: [
+                "Copy & Move",
+                "Text / JPEG / Google Drive",
+                "Photographer-ready",
+            ],
+            platformLabel: "Available on",
+            platforms: ["macOS", "Windows", "Android"],
+            problemTitle: "A faster way to handle selected RAW files",
+            problemBody:
+                "Instead of hunting files one by one across thousands of images, you can use text input or a reference list to filter the matching files. It is built for the stage after your client picks JPEGs and you need the corresponding RAW files ready for editing.",
+            aboutTitle: "What Is RAW File Copy Tool?",
+            aboutBody:
+                "This app is designed to read file-name lists, JPEG references, or other sources, then match JPEG/RAW files based on text. Once the files are found, the app can copy or move the matched results into the destination folder you choose.",
+            formatTitle: "Supported formats",
+            formats: ["ARW", "CR2", "CR3", "NEF", "NRW", "RAF", "RW2", "ORF", "PEF", "DNG", "JPG"],
+            featuresTitle: "Key features",
+            features: [
+                {
+                    title: "Fast matching",
+                    description:
+                        "Match files using text-based input with support for popular RAW formats and JPEG.",
+                },
+                {
+                    title: "Multi-platform",
+                    description:
+                        "Available for macOS, Windows, and Android so the workflow can stay consistent across devices.",
+                },
+                {
+                    title: "Copy & Move modes",
+                    description:
+                        "Choose whether the matched files should be copied into a new folder or moved directly.",
+                },
+                {
+                    title: "Update checker",
+                    description:
+                        "Makes it easier to stay on the latest version of the app.",
+                },
+                {
+                    title: "Safe & precise",
+                    description:
+                        "Only files that match your input are processed, helping you avoid messy manual selection.",
+                },
+                {
+                    title: "Simple interface",
+                    description:
+                        "The layout stays focused on the main job so you can start using it quickly.",
+                },
+            ],
+            workflowTitle: "How it works in 3 steps",
+            workflowSteps: [
+                {
+                    title: "Choose the RAW source folder",
+                    description:
+                        "Select the folder that contains your RAW files or source files before the process starts.",
+                },
+                {
+                    title: "Choose the destination folder",
+                    description:
+                        "Pick the location where the copied or moved results should end up.",
+                },
+                {
+                    title: "Enter the list and run",
+                    description:
+                        "Paste the file list, selected text, or another reference, then run the app in copy or move mode.",
+                },
+            ],
+            extraFeaturesTitle: "Extra features from the app",
+            extraFeaturesIntro:
+                "These practical workflow helpers already show up in the product resources and make the tool more flexible:",
+            extraFeatures: [
+                "Text List",
+                "JPEG Folder",
+                "Google Drive",
+                "Search in Subfolders",
+                "Keep folder structure",
+                "Folder picker remembers the last location",
+            ],
+            updateTitle: "Update v2.7.2",
+            updateBadge: "Latest update",
+            updateVersionLabel: "What is new in v2.7.2",
+            updateSummary:
+                "This release focuses on UI and usability refinements, especially around minimum window size, portrait/landscape behavior, and layout stability.",
+            updateHighlights: [
+                "Fixed and optimized minimum window size for both landscape and portrait modes.",
+                "Added a portrait/landscape toggle to the menu bar.",
+                "Input mode picker is now right-aligned without stretching.",
+                "Improved minimum window size enforcement using NSWindowDelegate.",
+            ],
+            socialTitle: "See demo / posts",
+            socialDescription:
+                "These two short posts give a quick feel for the workflow and value of RAW File Copy Tool.",
+            socialFallbackTitle: "Open on Instagram",
+            socialFallbackDescription:
+                "These fallback links are still usable if the browser blocks embeds or the Instagram script has not loaded yet.",
+            socialCards: [
+                {
+                    title: "Faster file workflow",
+                    description:
+                        "Stop spending hours matching client selections by hand. RAW File Copy Tool helps copy or move the right files automatically from a text list.",
+                    cta: "View on Instagram",
+                },
+                {
+                    title: "Automatic RAW filtering",
+                    description:
+                        "The app can parse file lists, detect duplicates, recognize partial numbers, and speed up RAW matching across large folders.",
+                    cta: "View on Instagram",
+                },
+            ],
+            finalCtaTitle: "Ready to speed up your RAW workflow?",
+            finalCtaDescription:
+                "Use this page as the main product entry point, then guide visitors to purchase, update info, or post-purchase instructions based on what they need next.",
+            buyButtonLabel: "Buy RAW File Copy Tool",
+            updateButtonLabel: "Update Info v2.7.2",
+            afterBuyButtonLabel: "Already bought it? View guide",
+            backHomeLabel: "Back to home",
         },
     },
 };
