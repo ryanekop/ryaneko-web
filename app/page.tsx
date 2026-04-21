@@ -6,38 +6,47 @@ import Link from 'next/link';
 import { motion } from "framer-motion";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
-import { useI18n } from "@/lib/i18n";
+import { Locale, useI18n } from "@/lib/i18n";
 
 type AppKey = "rawFileCopyTool" | "fastpik" | "clientDesk" | "photoSplitExpress" | "realtimeUploadPro" | "autoExportLrC";
 
-const apps: {
+type AppCard = {
   name: string;
   key: AppKey;
   icon: string | null;
   status: string;
   link: string | null;
+  external?: boolean;
   iconScale?: string;
-}[] = [
+};
+
+function getApps(locale: Locale): AppCard[] {
+  const localePath = locale === "en" ? "en" : "id";
+
+  return [
     {
       name: "RAW File Copy Tool",
       key: "rawFileCopyTool",
       icon: "/raw-file-copy-tool.png",
       status: "active",
-      link: "/raw-file-copy-tool"
+      link: "/raw-file-copy-tool",
+      external: false,
     },
     {
       name: "Fastpik",
       key: "fastpik",
       icon: "/fastpik.png",
       status: "active",
-      link: "https://fastpik.ryanekoapp.web.id"
+      link: `https://fastpik.ryanekoapp.web.id/${localePath}`,
+      external: true,
     },
     {
       name: "Client Desk",
       key: "clientDesk",
       icon: "/client-desk-maskable.png",
       status: "active",
-      link: "https://clientdesk.ryanekoapp.web.id"
+      link: `https://clientdesk.ryanekoapp.web.id/${localePath}`,
+      external: true,
     },
     {
       name: "Photo Split Express",
@@ -63,7 +72,7 @@ const apps: {
       link: "#"
     }
   ];
-
+}
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -88,8 +97,10 @@ const itemVariants = {
 };
 
 const trackedOutboundLinks = new Set([
-  "https://fastpik.ryanekoapp.web.id",
-  "https://clientdesk.ryanekoapp.web.id",
+  "https://fastpik.ryanekoapp.web.id/id",
+  "https://fastpik.ryanekoapp.web.id/en",
+  "https://clientdesk.ryanekoapp.web.id/id",
+  "https://clientdesk.ryanekoapp.web.id/en",
   "https://instagram.com/ryanekopram",
   "https://instagram.com/ryanekoapps",
 ]);
@@ -106,7 +117,8 @@ function getOutboundTrackingProps(url: string | null) {
 }
 
 export default function Home() {
-  const { t } = useI18n();
+  const { locale, t } = useI18n();
+  const apps = getApps(locale);
 
   return (
     <div className="flex flex-col min-h-screen font-sans bg-background text-foreground transition-colors duration-300">
@@ -241,15 +253,22 @@ export default function Home() {
                   {t.apps[app.key].description}
                 </p>
 
-                {app.link && app.status === 'active' && (
-                  <Link
+                {app.link && app.status === 'active' && app.external ? (
+                  <a
                     href={app.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="absolute inset-0 z-10"
                     {...getOutboundTrackingProps(app.link)}
                   >
                     <span className="sr-only">View {app.name}</span>
+                  </a>
+                ) : null}
+                {app.link && app.status === 'active' && !app.external ? (
+                  <Link href={app.link} className="absolute inset-0 z-10">
+                    <span className="sr-only">View {app.name}</span>
                   </Link>
-                )}
+                ) : null}
               </motion.div>
             ))}
           </motion.div>
