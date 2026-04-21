@@ -87,6 +87,24 @@ const itemVariants = {
   }
 };
 
+const trackedOutboundLinks = new Set([
+  "https://fastpik.ryanekoapp.web.id",
+  "https://clientdesk.ryanekoapp.web.id",
+  "https://instagram.com/ryanekopram",
+  "https://instagram.com/ryanekoapps",
+]);
+
+function getOutboundTrackingProps(url: string | null) {
+  if (!url || !trackedOutboundLinks.has(url)) {
+    return {};
+  }
+
+  return {
+    "data-umami-event": "outbound-link-click",
+    "data-umami-event-url": url,
+  };
+}
+
 export default function Home() {
   const { t } = useI18n();
 
@@ -224,7 +242,11 @@ export default function Home() {
                 </p>
 
                 {app.link && app.status === 'active' && (
-                  <Link href={app.link} className="absolute inset-0 z-10">
+                  <Link
+                    href={app.link}
+                    className="absolute inset-0 z-10"
+                    {...getOutboundTrackingProps(app.link)}
+                  >
                     <span className="sr-only">View {app.name}</span>
                   </Link>
                 )}
@@ -241,10 +263,22 @@ export default function Home() {
             &copy; {new Date().getFullYear()} Ryan Eko Apps. {t.footer}
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground sm:gap-6">
-            <a href="https://instagram.com/ryanekopram" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-foreground">
+            <a
+              href="https://instagram.com/ryanekopram"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 transition-colors hover:text-foreground"
+              {...getOutboundTrackingProps("https://instagram.com/ryanekopram")}
+            >
               <Instagram className="h-4 w-4" /> @ryanekopram
             </a>
-            <a href="https://instagram.com/ryanekoapps" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-foreground">
+            <a
+              href="https://instagram.com/ryanekoapps"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 transition-colors hover:text-foreground"
+              {...getOutboundTrackingProps("https://instagram.com/ryanekoapps")}
+            >
               <Instagram className="h-4 w-4" /> @ryanekoapps
             </a>
           </div>
