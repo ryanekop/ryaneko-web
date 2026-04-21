@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { ArrowRight, ExternalLink, Clock, Instagram } from "lucide-react";
+import { ExternalLink, Clock, Instagram } from "lucide-react";
 import Link from 'next/link';
 import { motion } from "framer-motion";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -101,7 +101,7 @@ export default function Home() {
         className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60"
       >
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3 font-bold text-xl tracking-tight">
+          <div className="flex items-center gap-3 font-bold text-lg tracking-tight sm:text-xl">
             <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-border/10">
               <Image src="/ryaneko-logo.png" alt="Ryan Eko Apps" width={64} height={64} className="object-cover w-full h-full" priority />
             </div>
@@ -115,30 +115,62 @@ export default function Home() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="py-20 sm:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-[0.02] pointer-events-none"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
+      <section className="relative overflow-hidden py-16 sm:py-24">
+        <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-[0.02]"></div>
+        <div className="absolute left-[-5%] top-8 h-48 w-48 rounded-full bg-emerald-400/15 blur-3xl" />
+        <div className="absolute right-[-8%] top-16 h-64 w-64 rounded-full bg-sky-400/15 blur-3xl" />
+        <div className="absolute bottom-0 left-1/2 h-56 w-56 -translate-x-1/2 rounded-full bg-amber-300/12 blur-3xl" />
+        <div className="container relative z-10 mx-auto px-4 text-center">
+          <motion.div
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.45 }}
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground shadow-sm backdrop-blur"
+          >
+            Ryan Eko Apps
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            Creative Tools
+          </motion.div>
           <motion.h1
             initial={{ scale: 0.95, opacity: 0, y: 10 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-5xl sm:text-7xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent"
+            className="mx-auto mb-5 max-w-4xl text-4xl font-extrabold tracking-tight text-balance sm:text-5xl lg:text-6xl"
           >
-            {t.heroTitle}
+            <span className="bg-gradient-to-r from-foreground via-foreground to-foreground/60 bg-clip-text text-transparent">
+              {t.heroTitle}
+            </span>
           </motion.h1>
           <motion.p
             initial={{ y: 15, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.15, duration: 0.6, ease: "easeOut" }}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-balance"
+            className="mx-auto mb-8 max-w-2xl text-sm leading-7 text-muted-foreground text-balance sm:text-base"
           >
             {t.heroDescription}
           </motion.p>
+          <motion.div
+            initial={{ y: 15, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+            className="mx-auto flex max-w-2xl flex-wrap items-center justify-center gap-3"
+          >
+            <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-2 text-xs font-medium text-emerald-700 shadow-sm dark:text-emerald-300">
+              Fast launch
+            </div>
+            <div className="rounded-2xl border border-sky-500/20 bg-sky-500/10 px-4 py-2 text-xs font-medium text-sky-700 shadow-sm dark:text-sky-300">
+              Clean workflow
+            </div>
+            <div className="rounded-2xl border border-amber-500/20 bg-amber-500/10 px-4 py-2 text-xs font-medium text-amber-700 shadow-sm dark:text-amber-300">
+              Photographer-ready
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Apps Grid */}
-      <section className="py-12 bg-muted/30">
+      <section className="relative bg-muted/20 py-12">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="container mx-auto px-4">
           <motion.div
             variants={containerVariants}
@@ -151,13 +183,14 @@ export default function Home() {
                 key={index}
                 variants={itemVariants}
                 className={`
-                  group relative flex flex-col p-6 rounded-2xl border border-border bg-card 
-                  hover:shadow-lg hover:border-primary/20 transition-all duration-300
+                  group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-border/70 bg-card/95 p-5 shadow-[0_12px_40px_rgba(15,23,42,0.06)]
+                  transition-all duration-300
                   ${app.status === 'coming-soon' ? 'opacity-75' : 'hover:-translate-y-1'}
                 `}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="relative w-16 h-16 shrink-0 rounded-2xl overflow-hidden bg-muted flex items-center justify-center border border-border/50 shadow-sm">
+                <div className="pointer-events-none absolute inset-x-6 top-0 h-20 rounded-b-[1.5rem] bg-gradient-to-r from-emerald-500/10 via-sky-500/10 to-amber-500/10 blur-2xl" />
+                <div className="mb-4 flex items-start justify-between">
+                  <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-border/50 bg-background shadow-sm">
                     {app.icon ? (
                       <Image
                         src={app.icon}
@@ -168,25 +201,25 @@ export default function Home() {
                         className={`object-contain w-full h-full ${app.iconScale || ''}`}
                       />
                     ) : (
-                      <Clock className="w-8 h-8 text-muted-foreground" />
+                      <Clock className="h-7 w-7 text-muted-foreground" />
                     )}
                   </div>
                   {app.status === 'active' && (
-                    <div className="p-2 rounded-full bg-secondary text-secondary-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors absolute top-6 right-6 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                      <ExternalLink className="w-5 h-5" />
+                    <div className="absolute right-5 top-5 translate-y-2 rounded-full border border-border/60 bg-background/90 p-2 text-secondary-foreground opacity-0 shadow-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-primary">
+                      <ExternalLink className="h-4 w-4" />
                     </div>
                   )}
                   {app.status === 'coming-soon' && (
-                    <span className="px-3 py-1 text-xs font-medium rounded-full bg-accent text-accent-foreground">
+                    <span className="rounded-full bg-accent px-3 py-1 text-[11px] font-medium text-accent-foreground">
                       {t.comingSoon}
                     </span>
                   )}
                 </div>
 
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                <h3 className="mb-2 text-lg font-bold transition-colors group-hover:text-primary">
                   {app.name}
                 </h3>
-                <p className="text-muted-foreground text-sm flex-grow leading-relaxed">
+                <p className="flex-grow text-sm leading-6 text-muted-foreground">
                   {t.apps[app.key].description}
                 </p>
 
@@ -204,15 +237,15 @@ export default function Home() {
       {/* Footer */}
       <footer className="py-12 border-t border-border mt-auto">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-sm text-muted-foreground mb-4">
+          <p className="mb-4 text-xs text-muted-foreground sm:text-sm">
             &copy; {new Date().getFullYear()} Ryan Eko Apps. {t.footer}
           </p>
-          <div className="flex justify-center gap-6 text-muted-foreground">
-            <a href="https://instagram.com/ryanekopram" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-2">
-              <Instagram className="w-4 h-4" /> @ryanekopram
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground sm:gap-6">
+            <a href="https://instagram.com/ryanekopram" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-foreground">
+              <Instagram className="h-4 w-4" /> @ryanekopram
             </a>
-            <a href="https://instagram.com/ryanekoapps" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors flex items-center gap-2">
-              <Instagram className="w-4 h-4" /> @ryanekoapps
+            <a href="https://instagram.com/ryanekoapps" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-foreground">
+              <Instagram className="h-4 w-4" /> @ryanekoapps
             </a>
           </div>
         </div>
