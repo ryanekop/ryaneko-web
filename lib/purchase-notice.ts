@@ -1,6 +1,10 @@
-import { Boxes, BriefcaseBusiness, Sparkles } from "lucide-react";
+import { Boxes, BriefcaseBusiness, Download, Sparkles } from "lucide-react";
 
-export type PurchaseNoticeVariant = "fastpik" | "clientDesk" | "bundle";
+export type PurchaseNoticeVariant =
+    | "fastpik"
+    | "clientDesk"
+    | "bundle"
+    | "rawFileCopyTool";
 
 export const purchaseNoticeConfig = {
     fastpik: {
@@ -23,5 +27,14 @@ export const purchaseNoticeConfig = {
             "border-amber-500/20 bg-amber-500/10 text-amber-700 dark:text-amber-300",
         iconClassName:
             "bg-amber-500/15 text-amber-700 dark:bg-amber-400/12 dark:text-amber-300",
+    },
+    rawFileCopyTool: {
+        icon: Download,
+        imageSrc: "/raw-file-copy-tool.png",
+        imageAlt: "RAW File Copy Tool",
+        panelClassName:
+            "border-orange-500/20 bg-orange-500/10 text-orange-700 dark:text-orange-300",
+        iconClassName:
+            "bg-orange-500/12 text-orange-700 dark:bg-orange-400/12 dark:text-orange-300",
     },
 } as const;

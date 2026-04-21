@@ -23,6 +23,7 @@ export function PurchaseNoticePage({ variant }: PurchaseNoticePageProps) {
     const common = t.purchaseNotice.common;
     const config = purchaseNoticeConfig[variant];
     const Icon = config.icon;
+    const usesProductImage = "imageSrc" in config;
 
     return (
         <div className="flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
@@ -74,7 +75,17 @@ export function PurchaseNoticePage({ variant }: PurchaseNoticePageProps) {
                             <div
                                 className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold shadow-sm ${config.panelClassName}`}
                             >
-                                <Icon className="h-3.5 w-3.5" />
+                                {usesProductImage ? (
+                                    <Image
+                                        src={config.imageSrc}
+                                        alt={config.imageAlt}
+                                        width={18}
+                                        height={18}
+                                        className="h-[18px] w-[18px] rounded-sm object-contain"
+                                    />
+                                ) : (
+                                    <Icon className="h-3.5 w-3.5" />
+                                )}
                                 {page.badge}
                             </div>
                         </div>
@@ -84,9 +95,19 @@ export function PurchaseNoticePage({ variant }: PurchaseNoticePageProps) {
                             <div className="mb-6 flex flex-col items-center gap-4 border-b border-border/60 pb-6 text-center">
                                 <div className="flex flex-wrap items-center justify-center gap-3">
                                     <div
-                                        className={`flex h-12 w-12 items-center justify-center rounded-2xl border border-current/10 shadow-sm ${config.iconClassName}`}
+                                        className={`flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-current/10 shadow-sm ${config.iconClassName}`}
                                     >
-                                        <Icon className="h-6 w-6" />
+                                        {usesProductImage ? (
+                                            <Image
+                                                src={config.imageSrc}
+                                                alt={config.imageAlt}
+                                                width={48}
+                                                height={48}
+                                                className="h-full w-full object-cover"
+                                            />
+                                        ) : (
+                                            <Icon className="h-6 w-6" />
+                                        )}
                                     </div>
                                     <div className="flex flex-wrap justify-center gap-2">
                                         {page.productLabels.map((label) => (
@@ -111,15 +132,22 @@ export function PurchaseNoticePage({ variant }: PurchaseNoticePageProps) {
                             </div>
 
                             <div className="mb-5 flex flex-wrap gap-2">
-                                <div className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-[11px] font-medium text-emerald-700 shadow-sm dark:text-emerald-300">
-                                    Check email first
-                                </div>
-                                <div className="rounded-full border border-sky-500/20 bg-sky-500/10 px-3 py-1.5 text-[11px] font-medium text-sky-700 shadow-sm dark:text-sky-300">
-                                    Create password
-                                </div>
-                                <div className="rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1.5 text-[11px] font-medium text-amber-700 shadow-sm dark:text-amber-300">
-                                    Login after setup
-                                </div>
+                                {page.quickChips.map((chip, index) => {
+                                    const chipClassNames = [
+                                        "border-emerald-500/20 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+                                        "border-sky-500/20 bg-sky-500/10 text-sky-700 dark:text-sky-300",
+                                        "border-amber-500/20 bg-amber-500/10 text-amber-700 dark:text-amber-300",
+                                    ];
+
+                                    return (
+                                        <div
+                                            key={chip}
+                                            className={`rounded-full border px-3 py-1.5 text-[11px] font-medium shadow-sm ${chipClassNames[index % chipClassNames.length]}`}
+                                        >
+                                            {chip}
+                                        </div>
+                                    );
+                                })}
                             </div>
 
                             <div className="grid gap-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(260px,0.8fr)]">
@@ -149,9 +177,9 @@ export function PurchaseNoticePage({ variant }: PurchaseNoticePageProps) {
                                                     {index === 1 && (
                                                         <div className="rounded-2xl border border-sky-500/20 bg-sky-500/8 px-3 py-2.5 text-xs leading-5 text-sky-900 shadow-sm dark:text-sky-100">
                                                             <span className="font-semibold">
-                                                                {common.emailTipsTitle}:
+                                                                {page.inlineTipTitle}:
                                                             </span>{" "}
-                                                            {common.emailTips}
+                                                            {page.inlineTipBody}
                                                         </div>
                                                     )}
                                                 </div>
@@ -181,11 +209,11 @@ export function PurchaseNoticePage({ variant }: PurchaseNoticePageProps) {
                                                 <LogIn className="h-4.5 w-4.5" />
                                             </div>
                                             <h2 className="text-sm font-semibold sm:text-[15px]">
-                                                {common.existingAccountTitle}
+                                                {page.secondaryTitle}
                                             </h2>
                                         </div>
                                         <p className="text-sm leading-6 text-muted-foreground">
-                                            {page.existingAccountHint}
+                                            {page.secondaryHint}
                                         </p>
                                     </section>
                                     <section className="rounded-[1.75rem] border border-border bg-background/85 p-5 shadow-sm">
