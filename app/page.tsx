@@ -36,8 +36,8 @@ const apps: {
       name: "Client Desk",
       key: "clientDesk",
       icon: null,
-      status: "coming-soon",
-      link: null
+      status: "active",
+      link: "https://clientdesk.ryanekoapp.web.id"
     },
     {
       name: "Photo Split Express",

@@ -77,7 +77,8 @@ const translations: Record<Locale, Translations> = {
                     "Tool untuk auto export foto dalam mode tether dengan settingan export (preset, frame, dll).",
             },
             clientDesk: {
-                description: "Coming Soon.",
+                description:
+                    "Platform untuk mengelola booking, invoice, jadwal, dan komunikasi klien dalam satu dashboard.",
             },
         },
         purchaseNotice: {
@@ -228,7 +229,8 @@ const translations: Record<Locale, Translations> = {
                     "A tool for auto exporting photos in tether mode with export settings (preset, frame, etc).",
             },
             clientDesk: {
-                description: "Coming Soon.",
+                description:
+                    "A platform to manage bookings, invoices, schedules, and client communication in one dashboard.",
             },
         },
         purchaseNotice: {
