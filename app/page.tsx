@@ -35,7 +35,7 @@ const apps: {
     {
       name: "Client Desk",
       key: "clientDesk",
-      icon: "/client-desk.png",
+      icon: "/client-desk-maskable.png",
       status: "active",
       link: "https://clientdesk.ryanekoapp.web.id"
     },
