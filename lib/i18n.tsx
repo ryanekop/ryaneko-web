@@ -29,7 +29,7 @@ interface Translations {
         realtimeUploadPro: { description: string };
         photoSplitExpress: { description: string };
         autoExportLrC: { description: string };
-        clientManagement: { description: string };
+        clientDesk: { description: string };
     };
     purchaseNotice: {
         common: {
@@ -76,7 +76,7 @@ const translations: Record<Locale, Translations> = {
                 description:
                     "Tool untuk auto export foto dalam mode tether dengan settingan export (preset, frame, dll).",
             },
-            clientManagement: {
+            clientDesk: {
                 description: "Coming Soon.",
             },
         },
@@ -227,7 +227,7 @@ const translations: Record<Locale, Translations> = {
                 description:
                     "A tool for auto exporting photos in tether mode with export settings (preset, frame, etc).",
             },
-            clientManagement: {
+            clientDesk: {
                 description: "Coming Soon.",
             },
         },

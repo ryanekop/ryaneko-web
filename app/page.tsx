@@ -8,7 +8,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
 import { useI18n } from "@/lib/i18n";
 
-type AppKey = "rawFileCopyTool" | "fastpik" | "realtimeUploadPro" | "photoSplitExpress" | "autoExportLrC" | "clientManagement";
+type AppKey = "rawFileCopyTool" | "fastpik" | "clientDesk" | "photoSplitExpress" | "realtimeUploadPro" | "autoExportLrC";
 
 const apps: {
   name: string;
@@ -33,12 +33,11 @@ const apps: {
       link: "https://fastpik.ryanekoapp.web.id"
     },
     {
-      name: "Realtime Upload Pro",
-      key: "realtimeUploadPro",
-      icon: "/realtime-upload-pro.png",
-      status: "active",
-      link: "#",
-      iconScale: "scale-[1.35]"
+      name: "Client Desk",
+      key: "clientDesk",
+      icon: null,
+      status: "coming-soon",
+      link: null
     },
     {
       name: "Photo Split Express",
@@ -49,18 +48,19 @@ const apps: {
       iconScale: "scale-[1.35]"
     },
     {
+      name: "Realtime Upload Pro",
+      key: "realtimeUploadPro",
+      icon: "/realtime-upload-pro.png",
+      status: "active",
+      link: "#",
+      iconScale: "scale-[1.35]"
+    },
+    {
       name: "Auto Export LrC Plugin",
       key: "autoExportLrC",
       icon: "/lightroom-plugin.png",
       status: "active",
       link: "#"
-    },
-    {
-      name: "Client Management",
-      key: "clientManagement",
-      icon: null,
-      status: "coming-soon",
-      link: null
     }
   ];
 
