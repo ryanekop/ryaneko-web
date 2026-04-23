@@ -77,6 +77,48 @@ interface RawFileCopyToolPageTranslation {
     backHomeLabel: string;
 }
 
+interface CustomDomainOptionTranslation {
+    extension: string;
+    price: string;
+    title: string;
+    description: string;
+    badge: string;
+}
+
+interface CustomDomainExampleTranslation {
+    domain: string;
+    label: string;
+    description: string;
+}
+
+interface CustomDomainPageTranslation {
+    badge: string;
+    title: string;
+    subtitle: string;
+    heroChips: string[];
+    optionsTitle: string;
+    optionsDescription: string;
+    domainOptions: CustomDomainOptionTranslation[];
+    recommendationTitle: string;
+    recommendationBody: string;
+    structureTitle: string;
+    structureDescription: string;
+    structureExamples: CustomDomainExampleTranslation[];
+    freedomNoteTitle: string;
+    freedomNoteBody: string;
+    registrationTitle: string;
+    registrationDescription: string;
+    registrationFields: string[];
+    templateTitle: string;
+    templateDescription: string;
+    templateLines: string[];
+    copyButtonLabel: string;
+    copiedButtonLabel: string;
+    passwordNoteTitle: string;
+    passwordNoteBody: string;
+    addressNote: string;
+}
+
 interface Translations {
     heroTitle: string;
     heroDescription: string;
@@ -108,6 +150,7 @@ interface Translations {
         rawFileCopyTool: PurchaseNoticePageTranslation;
     };
     rawFileCopyToolPage: RawFileCopyToolPageTranslation;
+    customDomainPage: CustomDomainPageTranslation;
 }
 
 const translations: Record<Locale, Translations> = {
@@ -389,6 +432,111 @@ const translations: Record<Locale, Translations> = {
             afterBuyButtonLabel: "Sudah beli? Lihat panduan",
             backHomeLabel: "Kembali ke home",
         },
+        customDomainPage: {
+            badge: "Informasi Custom Domain",
+            title: "Panduan memilih domain untuk Fastpik dan Client Desk",
+            subtitle:
+                "Halaman ini menjelaskan pilihan domain, estimasi biaya tahunan, contoh struktur domain utama dan subdomain, serta data yang perlu disiapkan untuk pendaftaran domain baru.",
+            heroChips: [
+                "Domain utama",
+                "Subdomain app",
+                "Data pendaftaran",
+            ],
+            optionsTitle: "Pilihan domain dan estimasi biaya",
+            optionsDescription:
+                "Harga di bawah ini adalah perkiraan berdasarkan opsi yang biasa dipakai. Harga final bisa berubah mengikuti provider domain.",
+            domainOptions: [
+                {
+                    extension: ".my.id",
+                    price: "20rb/tahun",
+                    title: "Paling murah",
+                    description:
+                        "Bisa dipilih kalau ingin biaya paling rendah, tapi tidak direkomendasikan karena kesannya kurang profesional untuk bisnis.",
+                    badge: "Tidak disarankan",
+                },
+                {
+                    extension: ".web.id",
+                    price: "50rb/tahun",
+                    title: "Rekomendasi hemat",
+                    description:
+                        "Pilihan yang masih terjangkau dan sudah cukup rapi untuk dipakai sebagai domain utama vendor.",
+                    badge: "Rekomendasi",
+                },
+                {
+                    extension: ".com",
+                    price: "200rb-300rb/tahun",
+                    title: "Umum dan profesional",
+                    description:
+                        "Cocok kalau ingin domain yang terasa familiar, mudah diingat, dan umum dipakai untuk bisnis.",
+                    badge: "Profesional",
+                },
+                {
+                    extension: ".id",
+                    price: "200rb-300rb/tahun",
+                    title: "Identitas Indonesia",
+                    description:
+                        "Cocok kalau ingin domain yang terlihat resmi dan kuat untuk brand lokal Indonesia.",
+                    badge: "Premium lokal",
+                },
+            ],
+            recommendationTitle: "Saran pemilihan domain",
+            recommendationBody:
+                "Kalau ingin hemat tapi tetap terlihat rapi, .web.id adalah pilihan yang aman. .my.id memang paling murah, tetapi sebaiknya dihindari untuk kebutuhan brand karena bisa terlihat seperti domain murahan.",
+            structureTitle: "Contoh struktur domain",
+            structureDescription:
+                "Setiap website tetap memakai nama di awal domain. Domain utama dipakai untuk brand vendor, lalu Fastpik dan Client Desk memakai subdomain masing-masing.",
+            structureExamples: [
+                {
+                    domain: "xxxxx.web.id",
+                    label: "Domain utama",
+                    description: "Dipakai sebagai alamat utama vendor.",
+                },
+                {
+                    domain: "client.xxxxx.web.id",
+                    label: "Client Desk",
+                    description: "Awalan client bisa dipakai untuk dashboard Client Desk.",
+                },
+                {
+                    domain: "pilih.xxxxx.web.id",
+                    label: "Fastpik",
+                    description: "Awalan pilih bisa dipakai untuk halaman pemilihan foto Fastpik.",
+                },
+            ],
+            freedomNoteTitle: "Nama bebas dipilih",
+            freedomNoteBody:
+                "Awalan subdomain dan nama domain tidak harus mengikuti contoh di atas. Nama vendor dan awalan seperti client atau pilih bisa diganti sesuai kebutuhan brand.",
+            registrationTitle: "Data yang perlu disiapkan",
+            registrationDescription:
+                "Kalau domain mau diproses, siapkan data berikut untuk kebutuhan pendaftaran domain baru di provider domain.",
+            registrationFields: [
+                "Nama Lengkap Pribadi",
+                "Nama Vendor",
+                "Email",
+                "Password Baru",
+                "Alamat",
+                "Kode Pos",
+                "No Telepon",
+            ],
+            templateTitle: "Template data untuk dikirim",
+            templateDescription:
+                "Template ini bisa dipakai agar data yang dikirim sudah lengkap dan mudah dicek sebelum pendaftaran domain.",
+            templateLines: [
+                "Nama Lengkap Pribadi:",
+                "Nama Vendor:",
+                "Email:",
+                "Password Baru:",
+                "Alamat:",
+                "Kode Pos:",
+                "No Telepon:",
+            ],
+            copyButtonLabel: "Salin",
+            copiedButtonLabel: "Tersalin",
+            passwordNoteTitle: "Catatan password",
+            passwordNoteBody:
+                "Gunakan password baru khusus untuk pendaftaran domain, jangan memakai password yang sama dengan email, bank, atau akun penting lain.",
+            addressNote:
+                "Pastikan email tidak salah. Untuk alamat, minimal sertakan jalan, kota, dan provinsi.",
+        },
     },
     en: {
         heroTitle: "Ryan Eko Apps",
@@ -667,6 +815,111 @@ const translations: Record<Locale, Translations> = {
             updateButtonLabel: "Update Info v2.7.2",
             afterBuyButtonLabel: "Already bought it? View guide",
             backHomeLabel: "Back to home",
+        },
+        customDomainPage: {
+            badge: "Custom Domain Info",
+            title: "A domain guide for Fastpik and Client Desk",
+            subtitle:
+                "This page explains domain choices, yearly cost estimates, example main-domain and subdomain structures, and the details needed to register a new domain.",
+            heroChips: [
+                "Main domain",
+                "App subdomains",
+                "Registration details",
+            ],
+            optionsTitle: "Domain options and estimated costs",
+            optionsDescription:
+                "The prices below are estimates based on common options. Final pricing can change depending on the domain provider.",
+            domainOptions: [
+                {
+                    extension: ".my.id",
+                    price: "20rb/year",
+                    title: "Lowest cost",
+                    description:
+                        "Available if the lowest yearly cost is the priority, but it is not recommended because it can look less professional for a business.",
+                    badge: "Not recommended",
+                },
+                {
+                    extension: ".web.id",
+                    price: "50rb/year",
+                    title: "Budget-friendly pick",
+                    description:
+                        "Still affordable and clean enough to use as the main domain for a vendor brand.",
+                    badge: "Recommended",
+                },
+                {
+                    extension: ".com",
+                    price: "200rb-300rb/year",
+                    title: "Common and professional",
+                    description:
+                        "A good fit if you want a familiar, easy-to-remember domain that is widely used for businesses.",
+                    badge: "Professional",
+                },
+                {
+                    extension: ".id",
+                    price: "200rb-300rb/year",
+                    title: "Indonesian identity",
+                    description:
+                        "A good fit if you want a domain that feels official and strong for a local Indonesian brand.",
+                    badge: "Local premium",
+                },
+            ],
+            recommendationTitle: "Domain recommendation",
+            recommendationBody:
+                "If you want a lower cost while still looking tidy, .web.id is a safe choice. .my.id is the cheapest, but it is better to avoid it for brand use because it can feel too cheap.",
+            structureTitle: "Example domain structure",
+            structureDescription:
+                "Each website still uses a name at the beginning of the domain. The main domain is used for the vendor brand, while Fastpik and Client Desk use their own subdomains.",
+            structureExamples: [
+                {
+                    domain: "xxxxx.web.id",
+                    label: "Main domain",
+                    description: "Used as the vendor's main address.",
+                },
+                {
+                    domain: "client.xxxxx.web.id",
+                    label: "Client Desk",
+                    description: "The client prefix can be used for the Client Desk dashboard.",
+                },
+                {
+                    domain: "pilih.xxxxx.web.id",
+                    label: "Fastpik",
+                    description: "The pilih prefix can be used for the Fastpik photo selection page.",
+                },
+            ],
+            freedomNoteTitle: "Names are flexible",
+            freedomNoteBody:
+                "The subdomain prefix and domain name do not have to follow the examples above. The vendor name and prefixes like client or pilih can be changed to match the brand.",
+            registrationTitle: "Details to prepare",
+            registrationDescription:
+                "If the domain should be processed, prepare these details for the new domain registration at the domain provider.",
+            registrationFields: [
+                "Full Personal Name",
+                "Vendor Name",
+                "Email",
+                "New Password",
+                "Address",
+                "Postal Code",
+                "Phone Number",
+            ],
+            templateTitle: "Details template to send",
+            templateDescription:
+                "Use this template so the submitted details are complete and easy to check before domain registration.",
+            templateLines: [
+                "Full Personal Name:",
+                "Vendor Name:",
+                "Email:",
+                "New Password:",
+                "Address:",
+                "Postal Code:",
+                "Phone Number:",
+            ],
+            copyButtonLabel: "Copy",
+            copiedButtonLabel: "Copied",
+            passwordNoteTitle: "Password note",
+            passwordNoteBody:
+                "Use a new password specifically for domain registration. Do not reuse a password from email, banking, or other important accounts.",
+            addressNote:
+                "Make sure the email is correct. For the address, include at least the street, city, and province.",
         },
     },
 };
