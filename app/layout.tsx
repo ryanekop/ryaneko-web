@@ -43,12 +43,23 @@ export default function RootLayout({
           </I18nProvider>
         </ThemeProvider>
         {umamiWebsiteId ? (
-          <Script
-            defer
-            src="https://cloud.umami.is/script.js"
-            data-website-id={umamiWebsiteId}
-            strategy="afterInteractive"
-          />
+          <>
+            <Script
+              defer
+              src="https://umami.ryanekoapp.web.id/script.js"
+              data-website-id={umamiWebsiteId}
+              strategy="afterInteractive"
+            />
+            <Script
+              defer
+              src="https://umami.ryanekoapp.web.id/recorder.js"
+              data-website-id={umamiWebsiteId}
+              data-sample-rate="0.15"
+              data-mask-level="moderate"
+              data-max-duration="300000"
+              strategy="afterInteractive"
+            />
+          </>
         ) : null}
       </body>
     </html>
