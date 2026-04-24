@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { HelpCircle, LogIn, MailCheck, ShieldAlert } from "lucide-react";
 
 import { LanguageToggle } from "@/components/language-toggle";
+import { PurchaseConfetti } from "@/components/purchase-confetti";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useI18n } from "@/lib/i18n";
 import {
@@ -58,6 +59,8 @@ export function PurchaseNoticePage({ variant }: PurchaseNoticePageProps) {
             </motion.nav>
 
             <main className="relative flex-1 overflow-hidden">
+                <PurchaseConfetti />
+
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.5),_transparent_55%)] dark:bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.08),_transparent_55%)]" />
                 <div className="absolute inset-x-0 top-0 h-72 bg-[linear-gradient(135deg,rgba(34,197,94,0.10),rgba(14,165,233,0.08),rgba(245,158,11,0.12))]" />
                 <div className="absolute left-[-8%] top-16 h-56 w-56 rounded-full bg-emerald-400/15 blur-3xl" />
