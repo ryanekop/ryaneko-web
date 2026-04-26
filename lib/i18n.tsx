@@ -511,6 +511,8 @@ const translations: Record<Locale, Translations> = {
             registrationFields: [
                 "Nama Lengkap Pribadi",
                 "Nama Vendor",
+                "Alamat Website Fastpik",
+                "Alamat Website Clientdesk",
                 "Email",
                 "Password Baru",
                 "Alamat",
@@ -523,6 +525,8 @@ const translations: Record<Locale, Translations> = {
             templateLines: [
                 "Nama Lengkap Pribadi:",
                 "Nama Vendor:",
+                "Alamat Website Fastpik:",
+                "Alamat Website Clientdesk:",
                 "Email:",
                 "Password Baru:",
                 "Alamat:",
@@ -895,6 +899,8 @@ const translations: Record<Locale, Translations> = {
             registrationFields: [
                 "Full Personal Name",
                 "Vendor Name",
+                "Fastpik Website Address",
+                "Clientdesk Website Address",
                 "Email",
                 "New Password",
                 "Address",
@@ -907,6 +913,8 @@ const translations: Record<Locale, Translations> = {
             templateLines: [
                 "Full Personal Name:",
                 "Vendor Name:",
+                "Fastpik Website Address:",
+                "Clientdesk Website Address:",
                 "Email:",
                 "New Password:",
                 "Address:",
