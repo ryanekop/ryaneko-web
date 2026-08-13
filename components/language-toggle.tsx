@@ -11,14 +11,15 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useI18n } from "@/lib/i18n"
 
-export function LanguageToggle() {
+export function LanguageToggle({ showLabel = false }: { showLabel?: boolean }) {
     const { locale, setLocale } = useI18n()
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon" className="cursor-pointer">
+                <Button variant="outline" size={showLabel ? "sm" : "icon"} className="cursor-pointer">
                     <Languages className="h-[1.2rem] w-[1.2rem]" />
+                    {showLabel ? <span className="ml-1 text-xs font-bold uppercase">{locale}</span> : null}
                     <span className="sr-only">Switch language</span>
                 </Button>
             </DropdownMenuTrigger>
