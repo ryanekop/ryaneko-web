@@ -37,7 +37,7 @@ export function PhotoMatchCullShell({ children }: { children: React.ReactNode })
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border/70 bg-background/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr]">
           <Link href="/photo-match-cull" className="flex items-center gap-3 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring">
             <Image src="/ryaneko-logo.png" alt="Ryan Eko Apps" width={40} height={40} className="h-9 w-9 rounded-xl object-cover shadow-sm" priority />
             <span className="leading-tight"><span className="block text-sm font-bold">Photo Match & Cull</span><span className="block text-[11px] text-muted-foreground">Ryan Eko Apps</span></span>
@@ -45,7 +45,7 @@ export function PhotoMatchCullShell({ children }: { children: React.ReactNode })
           <nav aria-label="Photo Match & Cull" className="hidden items-center gap-1 lg:flex">
             {links.map(([key, href]) => <Button key={key} asChild variant="ghost" size="sm"><Link href={href}>{copy[key]}</Link></Button>)}
           </nav>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 lg:justify-self-end">
             <LanguageToggle showLabel />
             <ThemeToggle />
             <details className="relative lg:hidden">
