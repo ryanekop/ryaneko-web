@@ -85,26 +85,26 @@ const trackingProps = (url: string) => ({
 
 export function LinksLandingPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background font-sans text-foreground transition-colors duration-300">
+    <main className="links-page-ambient relative min-h-screen overflow-hidden bg-background font-sans text-foreground transition-colors duration-300">
       <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-[0.025]" />
       <div className="pointer-events-none absolute -left-24 top-20 hidden h-72 w-72 rounded-full bg-emerald-400/15 blur-3xl sm:block" />
       <div className="pointer-events-none absolute -right-28 top-1/3 hidden h-80 w-80 rounded-full bg-sky-400/15 blur-3xl sm:block" />
       <div className="pointer-events-none absolute bottom-[-8rem] left-1/2 hidden h-80 w-80 -translate-x-1/2 rounded-full bg-amber-300/15 blur-3xl sm:block" />
 
-      <div className="links-mobile-enter relative z-10 mx-auto flex min-h-screen w-full max-w-xl flex-col px-4 pb-10 pt-4 sm:px-6 sm:pb-12 sm:pt-6">
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-xl flex-col px-4 pb-10 pt-4 sm:px-6 sm:pb-12 sm:pt-6">
         <div
-          className="links-desktop-rise flex justify-end"
+          className="links-reveal flex justify-end"
           style={{ "--links-delay": "0ms" } as CSSProperties}
         >
           <ThemeToggle />
         </div>
 
         <header
-          className="links-desktop-rise px-2 pb-7 pt-2 text-center sm:pb-8 sm:pt-3"
-          style={{ "--links-delay": "50ms" } as CSSProperties}
+          className="links-reveal px-2 pb-7 pt-2 text-center sm:pb-8 sm:pt-3"
+          style={{ "--links-delay": "40ms" } as CSSProperties}
         >
           <div className="relative mx-auto mb-4 h-24 w-24">
-            <div className="absolute inset-1 hidden rounded-full bg-gradient-to-br from-emerald-400/40 via-sky-400/30 to-amber-300/40 blur-xl sm:block" />
+            <div className="links-logo-halo" />
             <Image
               src="/links-ryaneko-logo.webp"
               alt="Logo Ryan Eko Apps"
@@ -126,7 +126,7 @@ export function LinksLandingPage() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Buka Instagram Ryan Eko Apps"
-            className="mt-4 inline-flex items-center gap-2 rounded-full border border-border/70 bg-card px-3.5 py-1.5 text-[13px] font-medium shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:bg-card/80 sm:backdrop-blur sm:transition-all sm:hover:-translate-y-0.5 sm:hover:border-pink-500/30 sm:hover:text-pink-600 sm:hover:shadow-md sm:dark:hover:text-pink-400"
+            className="mt-4 inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/90 px-3.5 py-1.5 text-[13px] font-medium shadow-[0_8px_24px_rgba(15,23,42,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:bg-card/80 sm:backdrop-blur sm:transition-all sm:hover:-translate-y-0.5 sm:hover:border-pink-500/30 sm:hover:text-pink-600 sm:hover:shadow-md sm:dark:hover:text-pink-400"
             {...trackingProps("https://instagram.com/ryanekoapps")}
           >
             <Instagram className="h-4 w-4" aria-hidden="true" />
@@ -138,7 +138,7 @@ export function LinksLandingPage() {
           {groups.map((group, groupIndex) => {
             const GroupIcon = group.icon;
             const links = bioLinks.filter((link) => link.group === group.key);
-            const sectionDelay = 140 + groupIndex * 260;
+            const sectionDelay = 95 + groupIndex * 255;
 
             return (
               <section
@@ -146,7 +146,7 @@ export function LinksLandingPage() {
                 aria-labelledby={`${group.key}-heading`}
               >
                 <div
-                  className="links-desktop-rise mb-3 flex items-end justify-between gap-4 px-1"
+                  className="links-reveal mb-3 flex items-end justify-between gap-4 px-1"
                   style={{ "--links-delay": `${sectionDelay}ms` } as CSSProperties}
                 >
                   <div>
@@ -177,9 +177,9 @@ export function LinksLandingPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Buka ${link.title}`}
-                      className="links-desktop-rise group relative flex min-h-16 w-full items-center gap-3 overflow-hidden rounded-[1.25rem] border border-border/70 bg-card p-2.5 pr-3 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:bg-card/90 sm:p-3 sm:backdrop-blur sm:transition-[border-color,box-shadow,transform] sm:duration-300 sm:hover:-translate-y-0.5 sm:hover:border-emerald-500/30 sm:hover:shadow-[0_12px_38px_rgba(15,23,42,0.1)]"
+                      className="links-reveal group relative flex min-h-16 w-full items-center gap-3 overflow-hidden rounded-[1.25rem] border border-border/70 bg-card/90 p-2.5 pr-3 shadow-[0_8px_24px_rgba(15,23,42,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:p-3 sm:backdrop-blur sm:transition-[border-color,box-shadow,transform] sm:duration-300 sm:hover:-translate-y-0.5 sm:hover:border-emerald-500/30 sm:hover:shadow-[0_12px_38px_rgba(15,23,42,0.1)]"
                       style={{
-                        "--links-delay": `${sectionDelay + 55 + linkIndex * 45}ms`,
+                        "--links-delay": `${sectionDelay + 45 + linkIndex * 35}ms`,
                       } as CSSProperties}
                       {...trackingProps(link.url)}
                     >
@@ -218,8 +218,8 @@ export function LinksLandingPage() {
         </div>
 
         <footer
-          className="links-desktop-rise mt-auto pt-12 text-center text-xs text-muted-foreground"
-          style={{ "--links-delay": "720ms" } as CSSProperties}
+          className="links-reveal mt-auto pt-12 text-center text-xs text-muted-foreground"
+          style={{ "--links-delay": "475ms" } as CSSProperties}
         >
           <div className="mx-auto mb-5 h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent" />
           <p>© {new Date().getFullYear()} Ryan Eko Apps</p>
