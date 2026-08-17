@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ryan Eko Apps",
     description: "Mempermudah workflow fotografer dan videografer 🚀",
-    images: ["https://ryanekoapp.web.id/ryaneko-logo.png"],
+    images: ["https://ryanekoapp.web.id/links-ryaneko-logo.png"],
   },
 };
 
