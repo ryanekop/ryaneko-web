@@ -27,35 +27,35 @@ const bioLinks: BioLink[] = [
   {
     title: "RAW File Copy Tool",
     url: "https://ryaneko.myr.id/pl/raw-file-copy-tool",
-    image: "/raw-file-copy-tool.png",
+    image: "/links-raw-file-copy-tool.webp",
     group: "order",
     highlighted: true,
   },
   {
     title: "Client Desk — Vendor Management",
     url: "https://clientdesk.ryanekoapp.web.id/id",
-    image: "/links-client-desk.png",
+    image: "/links-client-desk.webp",
     group: "order",
     highlighted: true,
   },
   {
     title: "Fastpik — Photo Culling",
     url: "https://fastpik.ryanekoapp.web.id/id",
-    image: "/links-fastpik.png",
+    image: "/links-fastpik.webp",
     group: "order",
     highlighted: true,
   },
   {
     title: "Photo Split Express",
     url: "https://ryaneko.myr.id/pl/photo-split-express",
-    image: "/photo-split-express.png",
+    image: "/links-photo-split-express.webp",
     group: "order",
     imageScale: "scale-[1.3]",
   },
   {
     title: "Update 2.7.3 — RAW File Copy Tool",
     url: "https://drive.google.com/drive/folders/10ujMTzZPuR31TSsu59uHl3NJ093Hn0Ix?usp=sharing",
-    image: "/raw-file-copy-tool.png",
+    image: "/links-raw-file-copy-tool.webp",
     group: "update",
   },
 ];
@@ -129,7 +129,7 @@ export function LinksLandingPage() {
           <div className="relative mx-auto mb-4 h-24 w-24">
             <div className="absolute inset-1 rounded-full bg-gradient-to-br from-emerald-400/40 via-sky-400/30 to-amber-300/40 blur-xl" />
             <Image
-              src="/links-ryaneko-logo.png"
+              src="/links-ryaneko-logo.webp"
               alt="Logo Ryan Eko Apps"
               width={192}
               height={192}
