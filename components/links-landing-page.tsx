@@ -14,6 +14,7 @@ type LinkGroup = "order" | "update";
 
 type BioLink = {
   title: string;
+  description?: string;
   url: string;
   image: string;
   group: LinkGroup;
@@ -24,8 +25,17 @@ type BioLink = {
 const bioLinks: BioLink[] = [
   {
     title: "RAW File Copy Tool",
+    description: "Mac, Windows & Android",
     url: "https://ryaneko.myr.id/pl/raw-file-copy-tool",
     image: "/links-raw-file-copy-tool.webp",
+    group: "order",
+    highlighted: true,
+  },
+  {
+    title: "Photo Match & Cull",
+    description: "iOS & iPadOS",
+    url: "https://apps.apple.com/id/app/photo-match-cull/id6754535593",
+    image: "/links-photo-match-cull.webp",
     group: "order",
     highlighted: true,
   },
@@ -204,6 +214,11 @@ export function LinksLandingPage() {
                             </span>
                           ) : null}
                         </h3>
+                        {link.description ? (
+                          <p className="mt-0.5 text-[11px] leading-4 text-muted-foreground sm:text-xs">
+                            {link.description}
+                          </p>
+                        ) : null}
                       </div>
 
                       <span className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border/70 bg-background/80 text-muted-foreground sm:transition-all sm:group-hover:border-emerald-500/20 sm:group-hover:bg-emerald-500/10 sm:group-hover:text-emerald-700 sm:dark:group-hover:text-emerald-300">
