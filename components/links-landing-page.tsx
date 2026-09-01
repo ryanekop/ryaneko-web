@@ -61,7 +61,7 @@ const bioLinks: BioLink[] = [
     imageScale: "scale-[1.3]",
   },
   {
-    title: "Update 2.7.3 — RAW File Copy Tool",
+    title: "Update 2.7.4 — RAW File Copy Tool",
     url: "https://drive.google.com/drive/folders/10ujMTzZPuR31TSsu59uHl3NJ093Hn0Ix?usp=sharing",
     image: "/links-raw-file-copy-tool.webp",
     group: "update",
