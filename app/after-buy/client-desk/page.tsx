@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { PurchaseNoticePage } from "@/components/purchase-notice-page";
 
 export const metadata: Metadata = {
-    title: "Client Desk Purchase Info | Ryan Eko Apps",
+    title: "Client Desk Purchase Complete | Ryan Eko Apps",
     description:
-        "Instructions for new Client Desk buyers after completing a Mayar purchase.",
+        "Your Client Desk purchase is complete. Continue to your package page.",
 };
 
 export default function AfterBuyClientDeskPage() {
