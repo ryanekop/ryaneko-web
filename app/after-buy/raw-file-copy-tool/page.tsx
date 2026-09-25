@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { PurchaseNoticePage } from "@/components/purchase-notice-page";
 
 export const metadata: Metadata = {
-    title: "RAW File Copy Tool Purchase Info | Ryan Eko Apps",
+    title: "Check Your Email | RAW File Copy Tool",
     description:
-        "Instructions for RAW File Copy Tool buyers after completing a purchase.",
+        "Check your purchase email for the RAW File Copy Tool download link, serial number, and installation guide.",
 };
 
 export default function AfterBuyRawFileCopyToolPage() {

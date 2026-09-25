@@ -18,6 +18,17 @@ interface PurchaseNoticePageTranslation {
     productLabels: string[];
 }
 
+interface RawFileCopyAfterBuyTranslation {
+    title: string;
+    description: string;
+    spamPrefix: string;
+    spamLabel: string;
+    spamSuffix: string;
+    supportPrompt: string;
+    supportLink: string;
+    backLabel: string;
+}
+
 interface RawFileCopyFeatureTranslation {
     title: string;
     description: string;
@@ -147,7 +158,7 @@ interface Translations {
         fastpik: PurchaseNoticePageTranslation;
         clientDesk: PurchaseNoticePageTranslation;
         bundle: PurchaseNoticePageTranslation;
-        rawFileCopyTool: PurchaseNoticePageTranslation;
+        rawFileCopyTool: RawFileCopyAfterBuyTranslation;
     };
     rawFileCopyToolPage: RawFileCopyToolPageTranslation;
     customDomainPage: CustomDomainPageTranslation;
@@ -278,31 +289,15 @@ const translations: Record<Locale, Translations> = {
                 productLabels: ["Client Desk", "Fastpik"],
             },
             rawFileCopyTool: {
-                badge: "RAW File Copy Tool Purchase",
-                title: "Pembelian RAW File Copy Tool berhasil",
-                subtitle:
-                    "Kalau kamu beli RAW File Copy Tool dari halaman pembelian, cek email dulu karena link download, serial number, dan tutorial install dikirim ke sana.",
-                quickChips: [
-                    "Cek email",
-                    "Download app",
-                    "Aktivasi serial",
-                ],
-                checklist: [
-                    "Buka inbox email yang kamu pakai saat checkout di halaman pembelian.",
-                    "Cari email RAW File Copy Tool yang berisi link download dan serial number.",
-                    "Download app lalu ikuti tutorial install sesuai perangkat dari email tersebut.",
-                    "Buka app dan masukkan serial number dari email untuk aktivasi.",
-                    "Pastikan internet aktif saat aktivasi pertama.",
-                ],
-                inlineTipTitle: "Kalau email belum masuk",
-                inlineTipBody:
-                    "Coba cek folder Spam, Promotions, atau Updates. Kalau emailnya sudah ketemu, simpan serial number-nya lalu buka info download atau tutorial installnya supaya tidak kelewat.",
-                note:
-                    "RAW File Copy Tool tidak memakai flow akun atau password. Akses utamanya dikirim lewat email pembelian berupa link download, serial number, dan tutorial install.",
-                secondaryTitle: "Kalau email sudah ketemu",
-                secondaryHint:
-                    "Simpan serial number-nya, lalu gunakan link download dan tutorial install dari email tersebut. Saat aktivasi pertama, pastikan perangkat terhubung ke internet.",
-                productLabels: ["RAW File Copy Tool"],
+                title: "Cek email kamu",
+                description:
+                    "Pembelian RAW File Copy Tool berhasil. Link download, serial number, dan panduan instalasi dikirim ke email yang kamu pakai saat pembelian.",
+                spamPrefix: "Belum ada di inbox? Cek folder ",
+                spamLabel: "Spam/Junk",
+                spamSuffix: ".",
+                supportPrompt: "Butuh bantuan?",
+                supportLink: "Hubungi kami.",
+                backLabel: "Kembali ke RAW File Copy Tool",
             },
         },
         rawFileCopyToolPage: {
@@ -429,7 +424,7 @@ const translations: Record<Locale, Translations> = {
                 "Pakai halaman ini sebagai pintu utama informasi produk, lalu arahkan user ke pembelian, update terbaru, atau panduan setelah pembelian sesuai kebutuhan mereka.",
             buyButtonLabel: "Beli RAW File Copy Tool",
             updateButtonLabel: "Info Update v2.7.2",
-            afterBuyButtonLabel: "Sudah beli? Lihat panduan",
+            afterBuyButtonLabel: "Sudah beli? Cek email",
             backHomeLabel: "Kembali ke home",
         },
         customDomainPage: {
@@ -666,31 +661,15 @@ const translations: Record<Locale, Translations> = {
                 productLabels: ["Client Desk", "Fastpik"],
             },
             rawFileCopyTool: {
-                badge: "RAW File Copy Tool Purchase",
-                title: "Your RAW File Copy Tool purchase was successful",
-                subtitle:
-                    "If you bought RAW File Copy Tool from the purchase page, check your email first because the download link, serial number, and install tutorial are sent there.",
-                quickChips: [
-                    "Check email",
-                    "Download app",
-                    "Activate serial",
-                ],
-                checklist: [
-                    "Open the inbox for the email address you used on the purchase page.",
-                    "Look for the RAW File Copy Tool email that contains the download link and serial number.",
-                    "Download the app, then follow the install tutorial for your device from that email.",
-                    "Open the app and enter the serial number from the email to activate it.",
-                    "Make sure your internet connection is on during the first activation.",
-                ],
-                inlineTipTitle: "If the email has not arrived yet",
-                inlineTipBody:
-                    "Please check your Spam, Promotions, or Updates folders. Once you find the email, save the serial number and open the download or install tutorial info promptly so it does not get missed.",
-                note:
-                    "RAW File Copy Tool does not use an account or password flow. The main access comes from the purchase email in the form of a download link, serial number, and install tutorial.",
-                secondaryTitle: "Once you find the email",
-                secondaryHint:
-                    "Save the serial number, then use the download link and install tutorial from that email. During the first activation, make sure the device is connected to the internet.",
-                productLabels: ["RAW File Copy Tool"],
+                title: "Check your email",
+                description:
+                    "Your RAW File Copy Tool purchase was successful. The download link, serial number, and installation guide were sent to the email address you used at checkout.",
+                spamPrefix: "Not in your inbox? Check your ",
+                spamLabel: "Spam/Junk",
+                spamSuffix: " folder.",
+                supportPrompt: "Need help?",
+                supportLink: "Contact us.",
+                backLabel: "Back to RAW File Copy Tool",
             },
         },
         rawFileCopyToolPage: {
@@ -817,7 +796,7 @@ const translations: Record<Locale, Translations> = {
                 "Use this page as the main product entry point, then guide visitors to purchase, update info, or post-purchase instructions based on what they need next.",
             buyButtonLabel: "Buy RAW File Copy Tool",
             updateButtonLabel: "Update Info v2.7.2",
-            afterBuyButtonLabel: "Already bought it? View guide",
+            afterBuyButtonLabel: "Already bought it? Check email",
             backHomeLabel: "Back to home",
         },
         customDomainPage: {

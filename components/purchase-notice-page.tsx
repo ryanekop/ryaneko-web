@@ -7,6 +7,7 @@ import { HelpCircle, LogIn, MailCheck, ShieldAlert } from "lucide-react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { PurchaseConfetti } from "@/components/purchase-confetti";
+import { RawFileCopyAfterBuyPage } from "@/components/raw-file-copy-after-buy-page";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useI18n } from "@/lib/i18n";
 import {
@@ -20,11 +21,16 @@ interface PurchaseNoticePageProps {
 
 export function PurchaseNoticePage({ variant }: PurchaseNoticePageProps) {
     const { t } = useI18n();
-    const page = t.purchaseNotice[variant];
-    const common = t.purchaseNotice.common;
     const config = purchaseNoticeConfig[variant];
     const Icon = config.icon;
     const usesProductImage = "imageSrc" in config;
+
+    if (variant === "rawFileCopyTool") {
+        return <RawFileCopyAfterBuyPage />;
+    }
+
+    const page = t.purchaseNotice[variant];
+    const common = t.purchaseNotice.common;
 
     return (
         <div className="flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
