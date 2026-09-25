@@ -1,12 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowLeft, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { PurchaseConfetti } from "@/components/purchase-confetti";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
 import { photoMatchCullConfig } from "@/lib/photo-match-cull";
 
@@ -34,27 +32,22 @@ export function RawFileCopyAfterBuyPage() {
                     <p className="mt-4 text-sm leading-6 text-muted-foreground">
                         {page.description}
                     </p>
-                    <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                        {page.spamPrefix}<strong className="font-semibold text-foreground">{page.spamLabel}</strong>{page.spamSuffix}
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                        {page.supportPrompt}{" "}
-                        <a
-                            href={photoMatchCullConfig.instagramUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
-                        >
-                            {page.supportLink}
-                        </a>
-                    </p>
-
-                    <Button asChild variant="outline" className="mt-6 h-11 w-full rounded-xl text-sm shadow-sm">
-                        <Link href="/raw-file-copy-tool">
-                            <ArrowLeft aria-hidden="true" className="mr-2 h-4 w-4" />
-                            {page.backLabel}
-                        </Link>
-                    </Button>
+                    <div className="mt-6 border-t border-border/70 pt-5">
+                        <p className="text-sm leading-6 text-muted-foreground">
+                            {page.spamPrefix}<strong className="font-semibold text-foreground">{page.spamLabel}</strong>{page.spamSuffix}
+                        </p>
+                        <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                            {page.supportPrompt}{" "}
+                            <a
+                                href={photoMatchCullConfig.instagramUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                            >
+                                {page.supportLink}
+                            </a>
+                        </p>
+                    </div>
                 </div>
             </main>
         </div>

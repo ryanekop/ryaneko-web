@@ -26,7 +26,6 @@ interface RawFileCopyAfterBuyTranslation {
     spamSuffix: string;
     supportPrompt: string;
     supportLink: string;
-    backLabel: string;
 }
 
 interface RawFileCopyFeatureTranslation {
@@ -297,7 +296,6 @@ const translations: Record<Locale, Translations> = {
                 spamSuffix: ".",
                 supportPrompt: "Butuh bantuan?",
                 supportLink: "Hubungi kami.",
-                backLabel: "Kembali ke RAW File Copy Tool",
             },
         },
         rawFileCopyToolPage: {
@@ -669,7 +667,6 @@ const translations: Record<Locale, Translations> = {
                 spamSuffix: " folder.",
                 supportPrompt: "Need help?",
                 supportLink: "Contact us.",
-                backLabel: "Back to RAW File Copy Tool",
             },
         },
         rawFileCopyToolPage: {
