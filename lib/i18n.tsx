@@ -12,9 +12,8 @@ interface PurchaseRedirectTranslation {
 interface RawFileCopyAfterBuyTranslation {
     title: string;
     description: string;
-    spamPrefix: string;
-    spamLabel: string;
-    spamSuffix: string;
+    spamTitle: string;
+    spamDescription: string;
     supportPrompt: string;
     supportLink: string;
 }
@@ -209,9 +208,8 @@ const translations: Record<Locale, Translations> = {
                 title: "Cek email kamu",
                 description:
                     "Pembelian RAW File Copy Tool berhasil. Link download, serial number, dan panduan instalasi dikirim ke email yang kamu pakai saat pembelian.",
-                spamPrefix: "Belum ada di inbox? Cek folder ",
-                spamLabel: "Spam/Junk",
-                spamSuffix: ".",
+                spamTitle: "Email belum terlihat? Cek Spam/Junk",
+                spamDescription: "Email berisi link download dan serial number bisa masuk ke folder Spam/Junk.",
                 supportPrompt: "Butuh bantuan?",
                 supportLink: "Hubungi kami.",
             },
@@ -509,9 +507,8 @@ const translations: Record<Locale, Translations> = {
                 title: "Check your email",
                 description:
                     "Your RAW File Copy Tool purchase was successful. The download link, serial number, and installation guide were sent to the email address you used at checkout.",
-                spamPrefix: "Not in your inbox? Check your ",
-                spamLabel: "Spam/Junk",
-                spamSuffix: " folder.",
+                spamTitle: "Can't find the email? Check Spam/Junk",
+                spamDescription: "The email with your download link and serial number may be in your Spam/Junk folder.",
                 supportPrompt: "Need help?",
                 supportLink: "Contact us.",
             },

@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail } from "lucide-react";
+import { Mail, MailSearch } from "lucide-react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { PurchaseConfetti } from "@/components/purchase-confetti";
@@ -32,22 +32,24 @@ export function RawFileCopyAfterBuyPage() {
                     <p className="mt-4 text-sm leading-6 text-muted-foreground">
                         {page.description}
                     </p>
-                    <div className="mt-6 border-t border-border/70 pt-5">
-                        <p className="text-sm leading-6 text-muted-foreground">
-                            {page.spamPrefix}<strong className="font-semibold text-foreground">{page.spamLabel}</strong>{page.spamSuffix}
-                        </p>
-                        <p className="mt-3 text-xs leading-5 text-muted-foreground">
-                            {page.supportPrompt}{" "}
-                            <a
-                                href={photoMatchCullConfig.instagramUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
-                            >
-                                {page.supportLink}
-                            </a>
-                        </p>
+                    <div className="mt-6 flex items-start gap-3 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-left text-amber-900 dark:text-amber-100">
+                        <MailSearch aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-amber-700 dark:text-amber-300" strokeWidth={1.8} />
+                        <div className="min-w-0">
+                            <h2 className="text-sm font-semibold leading-6">{page.spamTitle}</h2>
+                            <p className="mt-1 text-sm leading-6">{page.spamDescription}</p>
+                        </div>
                     </div>
+                    <p className="mt-4 text-xs leading-5 text-muted-foreground">
+                        {page.supportPrompt}{" "}
+                        <a
+                            href={photoMatchCullConfig.instagramUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                        >
+                            {page.supportLink}
+                        </a>
+                    </p>
                 </div>
             </main>
         </div>
