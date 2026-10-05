@@ -12,6 +12,8 @@ interface PurchaseRedirectTranslation {
 interface RawFileCopyAfterBuyTranslation {
     title: string;
     description: string;
+    mayarEmailDescription: string;
+    ryanEkoAppsEmailDescription: string;
     spamTitle: string;
     spamDescription: string;
     supportPrompt: string;
@@ -207,9 +209,11 @@ const translations: Record<Locale, Translations> = {
             rawFileCopyTool: {
                 title: "Cek email kamu",
                 description:
-                    "Pembelian RAW File Copy Tool berhasil. Link download, serial number, dan panduan instalasi dikirim ke email yang kamu pakai saat pembelian.",
-                spamTitle: "Email belum terlihat? Cek Spam/Junk",
-                spamDescription: "Email berisi link download dan serial number bisa masuk ke folder Spam/Junk.",
+                    "Pembelian RAW File Copy Tool berhasil. Cek 2 email yang dikirim ke alamat yang kamu pakai saat pembelian.",
+                mayarEmailDescription: "Berisi invoice pembelian.",
+                ryanEkoAppsEmailDescription: "Berisi link download, serial number, dan panduan instalasi.",
+                spamTitle: "Salah satu email belum terlihat? Cek Spam/Junk",
+                spamDescription: "Cari email dari Mayar dan Ryan Eko Apps juga di folder Spam/Junk.",
                 supportPrompt: "Butuh bantuan?",
                 supportLink: "Hubungi kami.",
             },
@@ -506,9 +510,11 @@ const translations: Record<Locale, Translations> = {
             rawFileCopyTool: {
                 title: "Check your email",
                 description:
-                    "Your RAW File Copy Tool purchase was successful. The download link, serial number, and installation guide were sent to the email address you used at checkout.",
-                spamTitle: "Can't find the email? Check Spam/Junk",
-                spamDescription: "The email with your download link and serial number may be in your Spam/Junk folder.",
+                    "Your RAW File Copy Tool purchase was successful. Check for 2 emails sent to the address you used at checkout.",
+                mayarEmailDescription: "Contains your purchase invoice.",
+                ryanEkoAppsEmailDescription: "Contains the download link, serial number, and installation guide.",
+                spamTitle: "Missing either email? Check Spam/Junk",
+                spamDescription: "Look for emails from Mayar and Ryan Eko Apps in your Spam/Junk folder too.",
                 supportPrompt: "Need help?",
                 supportLink: "Contact us.",
             },
