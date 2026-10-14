@@ -23,8 +23,9 @@ import { LanguageToggle } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
+import { softwareStoreEnabled } from "@/lib/software-store";
 
-const purchaseUrl = "https://ryaneko.myr.id/pl/raw-file-copy-tool";
+const purchaseUrl = softwareStoreEnabled ? "/checkout/raw-file-copy-tool" : "https://ryaneko.myr.id/pl/raw-file-copy-tool";
 const updateUrl =
     "https://drive.google.com/drive/folders/10ujMTzZPuR31TSsu59uHl3NJ093Hn0Ix?usp=sharing";
 const instagramUrls = [
@@ -172,7 +173,7 @@ export function RawFileCopyToolPage() {
                                 <Button asChild size="lg" className="rounded-full px-7">
                                     <a
                                         href={purchaseUrl}
-                                        target="_blank"
+                                        target={softwareStoreEnabled ? undefined : "_blank"}
                                         rel="noreferrer"
                                         {...getOutboundTrackingProps(purchaseUrl)}
                                     >
@@ -194,9 +195,9 @@ export function RawFileCopyToolPage() {
                                 </Button>
 
                                 <Button asChild size="lg" variant="outline" className={afterBuyButtonClassName}>
-                                    <Link href="/after-buy/raw-file-copy-tool">
+                                    <a href="/after-buy/raw-file-copy-tool">
                                         {page.afterBuyButtonLabel}
-                                    </Link>
+                                    </a>
                                 </Button>
                             </div>
 
@@ -524,7 +525,7 @@ export function RawFileCopyToolPage() {
                                     <Button asChild size="lg" className="rounded-full px-6">
                                         <a
                                             href={purchaseUrl}
-                                            target="_blank"
+                                            target={softwareStoreEnabled ? undefined : "_blank"}
                                             rel="noreferrer"
                                             {...getOutboundTrackingProps(purchaseUrl)}
                                         >
@@ -542,9 +543,9 @@ export function RawFileCopyToolPage() {
                                         </a>
                                     </Button>
                                     <Button asChild size="lg" variant="outline" className={afterBuyButtonClassName.replace("px-7", "px-6")}>
-                                        <Link href="/after-buy/raw-file-copy-tool">
+                                        <a href="/after-buy/raw-file-copy-tool">
                                             {page.afterBuyButtonLabel}
-                                        </Link>
+                                        </a>
                                     </Button>
                                     <Button asChild size="lg" variant="ghost" className="rounded-full px-5">
                                         <Link href="/">{page.backHomeLabel}</Link>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
+import { PrivacyAwareAnalytics } from "@/components/privacy-aware-analytics";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { I18nProvider } from "@/lib/i18n"
@@ -43,23 +43,7 @@ export default function RootLayout({
           </I18nProvider>
         </ThemeProvider>
         {umamiWebsiteId ? (
-          <>
-            <Script
-              defer
-              src="https://umami.ryanekoapp.web.id/script.js"
-              data-website-id={umamiWebsiteId}
-              strategy="afterInteractive"
-            />
-            <Script
-              defer
-              src="https://umami.ryanekoapp.web.id/recorder.js"
-              data-website-id={umamiWebsiteId}
-              data-sample-rate="0.15"
-              data-mask-level="moderate"
-              data-max-duration="300000"
-              strategy="afterInteractive"
-            />
-          </>
+          <PrivacyAwareAnalytics websiteId={umamiWebsiteId} />
         ) : null}
       </body>
     </html>

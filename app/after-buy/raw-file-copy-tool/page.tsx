@@ -3,9 +3,11 @@ import type { Metadata } from "next";
 import { PurchaseNoticePage } from "@/components/purchase-notice-page";
 
 export const metadata: Metadata = {
-    title: "Check Your Email | RAW File Copy Tool",
+    title: "Your Purchase | RAW File Copy Tool",
     description:
-        "Check your purchase email for the RAW File Copy Tool download link, serial number, and installation guide.",
+        "View your RAW File Copy Tool purchase, download, and serial numbers, or find your purchase email.",
+    robots: { index: false, follow: false },
+    referrer: "no-referrer",
 };
 
 export default function AfterBuyRawFileCopyToolPage() {

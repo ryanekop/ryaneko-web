@@ -1,20 +1,35 @@
 "use client";
 
-import { Mail, MailSearch } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Loader2, Mail, MailSearch } from "lucide-react";
 
 import { LanguageToggle } from "@/components/language-toggle";
-import { PurchaseConfetti } from "@/components/purchase-confetti";
+import { SoftwareOrderReceiptPage, SoftwareStoreShell } from "@/components/software-order-receipt";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useI18n } from "@/lib/i18n";
 import { photoMatchCullConfig } from "@/lib/photo-match-cull";
+import { captureReceiptAccess, type ReceiptAccess } from "@/lib/software-store";
+import { getStoreCopy } from "@/lib/software-store-i18n";
 
 export function RawFileCopyAfterBuyPage() {
-    const { t } = useI18n();
+    const { t, locale } = useI18n();
     const page = t.purchaseNotice.rawFileCopyTool;
+    const storeCopy = getStoreCopy(locale);
+    const [access, setAccess] = useState<ReceiptAccess | null | undefined>(undefined);
+
+    useEffect(() => {
+        const captured = captureReceiptAccess();
+        queueMicrotask(() => setAccess(captured));
+    }, []);
+
+    if (access === undefined) {
+        return <SoftwareStoreShell title={storeCopy.receiptTitle}><p role="status" className="flex items-center gap-2 text-sm text-muted-foreground"><Loader2 className="h-4 w-4 animate-spin" />{storeCopy.loading}</p></SoftwareStoreShell>;
+    }
+    if (access) return <SoftwareOrderReceiptPage access={access} />;
 
     return (
         <div className="flex min-h-dvh flex-col bg-background text-foreground">
-            <PurchaseConfetti />
             <header className="flex justify-end gap-2 px-4 py-4 sm:px-8">
                 <LanguageToggle />
                 <ThemeToggle />
@@ -70,6 +85,9 @@ export function RawFileCopyAfterBuyPage() {
                             {page.supportLink}
                         </a>
                     </p>
+                    <Link href="/purchase-history" className="mt-6 inline-flex min-h-11 items-center justify-center rounded-xl border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm hover:bg-muted">
+                        {storeCopy.historyEmailLink}
+                    </Link>
                 </div>
             </main>
         </div>

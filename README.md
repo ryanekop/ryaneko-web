@@ -2,6 +2,31 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+## RAW File Copy Tool checkout
+
+The new pages are `/checkout/raw-file-copy-tool`,
+`/after-buy/raw-file-copy-tool`, and `/purchase-history`.
+The site remains a static export; all payment, OTP, history and license access
+is handled by Ryan Eko License `/api/store`.
+
+Set `NEXT_PUBLIC_SOFTWARE_STORE_API_URL` to that endpoint. Keep
+`NEXT_PUBLIC_SOFTWARE_STORE_ENABLED=false` until the license backend migration,
+configuration, and real Mayar sandbox redirect tests pass. The default public
+buy buttons continue using the existing Mayar product link. Enable the flag at
+build time only after those checks.
+
+History uses email + OTP, without order-code search. Checkout/receipt/history
+pages exclude analytics and session recording. Entry links to private purchase
+pages must use native anchors (full navigation) so a recorder from a public
+page cannot continue across a client-side transition. Browser capability and
+history session tokens live in session storage, never query strings.
+
+The backend rollout and local database/service test instructions are in
+`ryaneko-license/docs/software-store-rollout.md`. Preparing or building the web
+does not apply that migration or deploy either project.
+
+## Development
+
 First, run the development server:
 
 ```bash
