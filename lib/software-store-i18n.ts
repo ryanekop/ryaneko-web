@@ -11,7 +11,25 @@ const en: Record<keyof typeof id, string> = {
     buyerDetails: "Buyer details", name: "Full name", email: "Email", mobile: "Phone / WhatsApp number", instagram: "Instagram username", os: "Operating system", source: "How did you hear about us?", select: "Select an option", instagramHelp: "Example: @username", emailHelp: "Use an active email to receive your serials and access purchase history.", packages: "Choose your license", device: "device", total: "Payment total", required: "All details are required.", pay: "Continue to payment", paying: "Preparing payment…", paymentProvider: "Secure payment through Mayar", resumeHint: "If your previous payment is still valid, you will resume the same payment. If it has expired, the payment link will be renewed.", lastOrder: "View last order", loading: "Loading…", retry: "Try again", unavailable: "Web checkout is not available yet. You can still purchase through Mayar.", buyMayar: "Buy through Mayar", receiptTitle: "Your order", receiptDescription: "Find your payment status, download, and purchase serials here.", date: "Date", licenses: "License count", orderAmount: "Total", serials: "Serial numbers", download: "Download app", copy: "Copy", copied: "Copied", copyFailed: "The serial could not be copied. Select the serial text to copy it.", checkAgain: "Check again", checking: "Checking…", pollingDone: "Automatic checking has finished. Select Check again if you have just completed payment.", continuePayment: "Continue payment", buyAgain: "Create payment again", emailNotice: "Your purchase email will still be sent. Check Spam/Junk if you cannot find it.", receiptAccessError: "Order access is invalid or has expired. Open purchase history with your email to view the order.", historyDescription: "Use your purchase email. We will send a verification code to open your history, serials, and downloads.", requestOtp: "Send verification code", sending: "Sending…", otpTitle: "Verify your email", otpDescription: "If this email has purchases, a verification code has been sent. Check your inbox or Spam/Junk. The code is valid for 10 minutes.", otp: "6-digit verification code", verify: "Open history", verifying: "Verifying…", resend: "Resend code", resendWait: "Resend in", seconds: "seconds", changeEmail: "Change email", logout: "Sign out", sessionNote: "History access lasts 30 minutes. Sign out when finished on a shared device.", emptyHistory: "No RAW File Copy Tool purchases are recorded for this email yet.", viewOrder: "View order", previous: "Previous", next: "Next", page: "Page", backHistory: "Back to history", historyEmailLink: "Find purchases by email", sessionExpired: "History access has expired. Verify your email again.", genericError: "The request could not be completed. Check your connection and try again.", rateLimited: "Too many attempts. Wait a moment and try again.", otpInvalid: "The code is incorrect or has expired. Check the code or request a new one.", otpAttempts: "The code attempt limit has been reached. Request a new code after the cooldown.", storageError: "Allow browser session storage so your order can be reopened, then try again.", paymentError: "Payment could not be created. Try again; if you already paid, check your history by email.",
 };
 
-export function getStoreCopy(locale: Locale) { return locale === "en" ? en : id; }
+export function getStoreCopy(locale: Locale) {
+    return locale === "en" ? { ...en, source: "How did you hear about Ryan Eko Apps?" } : { ...id, source: "Darimana kamu mengetahui Ryan Eko Apps?" };
+}
+
+export function getCheckoutReviewCopy(locale: Locale) {
+    return locale === "en" ? {
+        title: "Review your purchase details",
+        reminder: "Check your email and WhatsApp number carefully. Your email is used to receive serials and access purchase history.",
+        edit: "Go back and edit details", confirm: "Details are correct, continue to payment",
+        emailWarning: "Make sure your email is active, correctly spelled, and its inbox is not full. Check Spam/Junk for your purchase email.",
+        phoneWarning: "Make sure your WhatsApp number is active and correctly entered.",
+    } : {
+        title: "Periksa kembali data pembelian",
+        reminder: "Pastikan email dan nomor WhatsApp sudah benar dan tidak typo. Email digunakan untuk menerima serial dan mengakses riwayat pembelian.",
+        edit: "Kembali, perbaiki data", confirm: "Data sudah benar, lanjut bayar",
+        emailWarning: "Pastikan email aktif, tidak typo, dan inbox tidak penuh. Periksa Spam/Junk untuk email pembelian.",
+        phoneWarning: "Pastikan nomor WhatsApp aktif dan tidak typo.",
+    };
+}
 
 export function getUnknownPaymentCopy(locale: Locale) {
     return locale === "id" ? { label: "Status pembayaran tidak tersedia", description: "Catatan pembayaran lama tidak lengkap. Serial dan download pembelian yang tercatat tetap dapat dibuka setelah verifikasi email." } : { label: "Payment status unavailable", description: "The earlier payment record is incomplete. Recorded purchase serials and downloads remain accessible after email verification." };

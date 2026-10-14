@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
-import { ArrowLeft, Check, CircleCheck, Clock3, Copy, Download, Loader2, RefreshCw, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Check, CircleCheck, Clock3, Copy, Download, History, Loader2, RefreshCw, ShieldCheck } from "lucide-react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { PurchaseConfetti } from "@/components/purchase-confetti";
@@ -13,7 +13,7 @@ import { useI18n } from "@/lib/i18n";
 import { getStoreCopy, getStoreError, getStoreStatusCopy, getUnknownPaymentCopy } from "@/lib/software-store-i18n";
 import { safeStoreUrl, StoreApiError, storeDate, storeMoney, storeRequest, type ReceiptAccess, type StoreReceipt } from "@/lib/software-store";
 
-export function SoftwareStoreShell({ title, description, children }: { title: string; description?: string; children: ReactNode }) {
+export function SoftwareStoreShell({ title, description, titleIcon, children }: { title: string; description?: string; titleIcon?: ReactNode; children: ReactNode }) {
     const { locale } = useI18n();
     const copy = getStoreCopy(locale);
     return (
@@ -30,11 +30,11 @@ export function SoftwareStoreShell({ title, description, children }: { title: st
             <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6 sm:py-12">
                 <div className="mb-7 flex flex-wrap items-center justify-between gap-3 text-sm">
                     <Link href="/raw-file-copy-tool" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground"><ArrowLeft className="h-4 w-4" />{copy.backProduct}</Link>
-                    <Link href="/purchase-history" className="font-medium underline underline-offset-4 hover:text-primary">{copy.history}</Link>
+                    <a href="/purchase-history" className="inline-flex items-center gap-2 font-medium underline underline-offset-4 hover:text-primary"><History aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.history}</a>
                 </div>
                 <div className="mb-8 max-w-2xl">
                     <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-emerald-700 dark:text-emerald-300">{copy.product}</p>
-                    <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
+                    <h1 className="flex items-center gap-3 text-3xl font-bold tracking-tight sm:text-4xl">{titleIcon}{title}</h1>
                     {description && <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">{description}</p>}
                 </div>
                 {children}
@@ -171,7 +171,7 @@ export function SoftwareOrderReceiptPage({ access }: { access: ReceiptAccess }) 
                 {loading && !receipt && <p role="status" className="flex items-center gap-2 text-sm text-muted-foreground"><Loader2 className="h-4 w-4 animate-spin" />{copy.loading}</p>}
                 {pollingDone && <p className="text-sm leading-6 text-muted-foreground">{copy.pollingDone}</p>}
                 {!accessExpired && receipt?.status !== "fulfilled" && <Button type="button" variant="outline" disabled={loading} onClick={() => { setLoading(true); setPollingDone(false); setRefresh((value) => value + 1); }}><RefreshCw className={`mr-2 h-4 w-4 ${loading ? "animate-spin" : ""}`} />{loading ? copy.checking : copy.checkAgain}</Button>}
-                <Link href="/purchase-history" className="block text-sm font-medium underline underline-offset-4 hover:text-primary">{copy.historyEmailLink}</Link>
+                <a href="/purchase-history" className="inline-flex items-center gap-2 text-sm font-medium underline underline-offset-4 hover:text-primary"><History aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.historyEmailLink}</a>
             </div>
         </SoftwareStoreShell>
     );

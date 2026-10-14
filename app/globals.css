@@ -137,6 +137,15 @@
   }
 }
 
+/* Clickable controls share a visible affordance; text fields keep their text cursor. */
+:where(a[href], button, select, summary, [role="button"], [role="tab"], [role="menuitem"], input[type="button"], input[type="submit"], input[type="reset"], input[type="checkbox"], input[type="radio"]) {
+  cursor: pointer;
+}
+
+:where(button, select, input, textarea, [role="button"], [role="tab"], [role="menuitem"], a):is(:disabled, [aria-disabled="true"], [data-disabled]) {
+  cursor: not-allowed;
+}
+
 @keyframes links-desktop-rise {
   from {
     opacity: 0;

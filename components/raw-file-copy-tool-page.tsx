@@ -4,16 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-    ArrowRight,
     CheckCircle2,
     CopyPlus,
-    ExternalLink,
+    Download,
     FolderGit2,
     FolderOutput,
     HardDriveDownload,
+    History,
     RefreshCw,
     SearchCheck,
     ShieldCheck,
+    ShoppingCart,
     Sparkles,
     WandSparkles,
 } from "lucide-react";
@@ -23,9 +24,8 @@ import { LanguageToggle } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
-import { softwareStoreEnabled } from "@/lib/software-store";
 
-const purchaseUrl = softwareStoreEnabled ? "/checkout/raw-file-copy-tool" : "https://ryaneko.myr.id/pl/raw-file-copy-tool";
+const purchaseUrl = "/checkout/raw-file-copy-tool";
 const updateUrl =
     "https://drive.google.com/drive/folders/10ujMTzZPuR31TSsu59uHl3NJ093Hn0Ix?usp=sharing";
 const instagramUrls = [
@@ -34,7 +34,6 @@ const instagramUrls = [
 ];
 
 const trackedOutboundLinks = new Set([
-    purchaseUrl,
     updateUrl,
     ...instagramUrls,
 ]);
@@ -173,12 +172,9 @@ export function RawFileCopyToolPage() {
                                 <Button asChild size="lg" className="rounded-full px-7">
                                     <a
                                         href={purchaseUrl}
-                                        target={softwareStoreEnabled ? undefined : "_blank"}
-                                        rel="noreferrer"
-                                        {...getOutboundTrackingProps(purchaseUrl)}
                                     >
+                                        <ShoppingCart aria-hidden="true" className="mr-2 h-4 w-4" />
                                         {page.buyButtonLabel}
-                                        <ArrowRight className="ml-2 h-4 w-4" />
                                     </a>
                                 </Button>
 
@@ -189,13 +185,14 @@ export function RawFileCopyToolPage() {
                                         rel="noreferrer"
                                         {...getOutboundTrackingProps(updateUrl)}
                                     >
+                                        <Download aria-hidden="true" className="mr-2 h-4 w-4" />
                                         {page.updateButtonLabel}
-                                        <ExternalLink className="ml-2 h-4 w-4" />
                                     </a>
                                 </Button>
 
                                 <Button asChild size="lg" variant="outline" className={afterBuyButtonClassName}>
-                                    <a href="/after-buy/raw-file-copy-tool">
+                                    <a href="/purchase-history">
+                                        <History aria-hidden="true" className="mr-2 h-4 w-4" />
                                         {page.afterBuyButtonLabel}
                                     </a>
                                 </Button>
@@ -478,8 +475,8 @@ export function RawFileCopyToolPage() {
                                             rel="noreferrer"
                                             {...getOutboundTrackingProps(updateUrl)}
                                         >
+                                            <Download aria-hidden="true" className="mr-2 h-4 w-4" />
                                             {page.updateButtonLabel}
-                                            <ExternalLink className="ml-2 h-4 w-4" />
                                         </a>
                                     </Button>
                                 </div>
@@ -525,10 +522,8 @@ export function RawFileCopyToolPage() {
                                     <Button asChild size="lg" className="rounded-full px-6">
                                         <a
                                             href={purchaseUrl}
-                                            target={softwareStoreEnabled ? undefined : "_blank"}
-                                            rel="noreferrer"
-                                            {...getOutboundTrackingProps(purchaseUrl)}
                                         >
+                                            <ShoppingCart aria-hidden="true" className="mr-2 h-4 w-4" />
                                             {page.buyButtonLabel}
                                         </a>
                                     </Button>
@@ -539,11 +534,13 @@ export function RawFileCopyToolPage() {
                                             rel="noreferrer"
                                             {...getOutboundTrackingProps(updateUrl)}
                                         >
+                                            <Download aria-hidden="true" className="mr-2 h-4 w-4" />
                                             {page.updateButtonLabel}
                                         </a>
                                     </Button>
                                     <Button asChild size="lg" variant="outline" className={afterBuyButtonClassName.replace("px-7", "px-6")}>
-                                        <a href="/after-buy/raw-file-copy-tool">
+                                        <a href="/purchase-history">
+                                            <History aria-hidden="true" className="mr-2 h-4 w-4" />
                                             {page.afterBuyButtonLabel}
                                         </a>
                                     </Button>

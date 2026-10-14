@@ -341,8 +341,8 @@ const translations: Record<Locale, Translations> = {
             finalCtaDescription:
                 "Pakai halaman ini sebagai pintu utama informasi produk, lalu arahkan user ke pembelian, update terbaru, atau panduan setelah pembelian sesuai kebutuhan mereka.",
             buyButtonLabel: "Beli RAW File Copy Tool",
-            updateButtonLabel: "Info Update v2.7.2",
-            afterBuyButtonLabel: "Sudah beli? Cek email",
+            updateButtonLabel: "Download Aplikasi",
+            afterBuyButtonLabel: "Cek Riwayat Pembelian",
             backHomeLabel: "Kembali ke home",
         },
         customDomainPage: {
@@ -642,8 +642,8 @@ const translations: Record<Locale, Translations> = {
             finalCtaDescription:
                 "Use this page as the main product entry point, then guide visitors to purchase, update info, or post-purchase instructions based on what they need next.",
             buyButtonLabel: "Buy RAW File Copy Tool",
-            updateButtonLabel: "Update Info v2.7.2",
-            afterBuyButtonLabel: "Already bought it? Check email",
+            updateButtonLabel: "Download App",
+            afterBuyButtonLabel: "View Purchase History",
             backHomeLabel: "Back to home",
         },
         customDomainPage: {

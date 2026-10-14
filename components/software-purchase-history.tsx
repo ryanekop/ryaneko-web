@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { ArrowLeft, ArrowRight, Loader2, Mail, RefreshCw } from "lucide-react";
+import { ArrowLeft, ArrowRight, History, Loader2, Mail, RefreshCw } from "lucide-react";
 
 import { SoftwareReceiptCard, SoftwareStoreShell, StoreErrorNotice } from "@/components/software-order-receipt";
 import { Button } from "@/components/ui/button";
@@ -157,18 +157,17 @@ export function SoftwarePurchaseHistory() {
     }
 
     return (
-        <SoftwareStoreShell title={copy.history} description={!session ? copy.historyDescription : undefined}>
+        <SoftwareStoreShell title={copy.history} titleIcon={<History aria-hidden="true" className="h-7 w-7 shrink-0 sm:h-8 sm:w-8" />} description={!session ? copy.historyDescription : undefined}>
             <div className="mx-auto max-w-2xl space-y-4">
                 {sessionExpired && <StoreErrorNotice>{copy.sessionExpired}</StoreErrorNotice>}
                 {error !== null && <StoreErrorNotice>{getStoreError(error, locale)}</StoreErrorNotice>}
                 {booting ? <p role="status" className="flex items-center gap-2 text-sm text-muted-foreground"><Loader2 className="h-4 w-4 animate-spin" />{copy.loading}</p> : !session ? (
                     <div className="rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-6">
-                        <Mail className="mb-4 h-7 w-7 text-emerald-700 dark:text-emerald-300" />
                         {!requested ? <form onSubmit={(event) => void requestOtp(event)} className="space-y-5">
-                            <label className="block text-sm font-medium" htmlFor="history-email">{copy.email}<input id="history-email" name="email" type="email" autoComplete="email" required maxLength={254} value={email} onChange={(event) => setEmail(event.target.value)} disabled={busy !== null} className={inputClassName} /></label>
+                            <label className="block text-sm font-medium" htmlFor="history-email"><span className="flex items-center gap-2"><Mail aria-hidden="true" className="h-5 w-5 shrink-0 text-emerald-700 dark:text-emerald-300" />{copy.email}</span><input id="history-email" name="email" type="email" autoComplete="email" required maxLength={254} value={email} onChange={(event) => setEmail(event.target.value)} disabled={busy !== null} className={inputClassName} /></label>
                             <Button type="submit" size="lg" className="w-full" disabled={busy !== null || remaining > 0}>{busy === "otp" && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}{busy === "otp" ? copy.sending : remaining > 0 ? `${copy.resendWait} ${remaining} ${copy.seconds}` : copy.requestOtp}</Button>
                         </form> : <div>
-                            <h2 className="text-lg font-semibold">{copy.otpTitle}</h2>
+                            <h2 className="flex items-center gap-2 text-lg font-semibold"><Mail aria-hidden="true" className="h-5 w-5 shrink-0 text-emerald-700 dark:text-emerald-300" />{copy.otpTitle}</h2>
                             <p className="mt-2 break-all text-sm font-medium">{email}</p>
                             <p className="mt-3 text-sm leading-6 text-muted-foreground">{copy.otpDescription}</p>
                             <form onSubmit={(event) => void verifyOtp(event)} className="mt-5 space-y-4">

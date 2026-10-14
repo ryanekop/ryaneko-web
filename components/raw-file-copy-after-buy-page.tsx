@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Loader2, Mail, MailSearch } from "lucide-react";
+import { History, Loader2, Mail, MailSearch } from "lucide-react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { SoftwareOrderReceiptPage, SoftwareStoreShell } from "@/components/software-order-receipt";
@@ -85,9 +84,10 @@ export function RawFileCopyAfterBuyPage() {
                             {page.supportLink}
                         </a>
                     </p>
-                    <Link href="/purchase-history" className="mt-6 inline-flex min-h-11 items-center justify-center rounded-xl border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm hover:bg-muted">
+                    <a href="/purchase-history" className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-border bg-background px-4 py-2 text-sm font-medium shadow-sm hover:bg-muted">
+                        <History aria-hidden="true" className="h-4 w-4 shrink-0" />
                         {storeCopy.historyEmailLink}
-                    </Link>
+                    </a>
                 </div>
             </main>
         </div>
