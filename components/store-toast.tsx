@@ -19,8 +19,8 @@ export function StoreToast({ tone, children, verification, onClose, closeLabel }
         <motion.div
             initial={reducedMotion ? false : { x: "100%", opacity: 0 }}
             animate={{ x: "0%", opacity: 1 }}
-            exit={{ x: reducedMotion ? "0%" : "100%", opacity: 0, transition: { duration: reducedMotion ? 0 : 0.3, ease: "easeIn" } }}
-            transition={{ duration: reducedMotion ? 0 : 0.4, ease: "easeOut" }}
+            exit={{ x: reducedMotion ? "0%" : "100%", opacity: 0, transition: { duration: reducedMotion ? 0 : 0.2, ease: "easeIn" } }}
+            transition={{ duration: reducedMotion ? 0 : 0.2, ease: "easeOut" }}
             className={`fixed top-[max(1rem,env(safe-area-inset-top))] right-[max(1rem,env(safe-area-inset-right))] z-50 flex w-[calc(100%-max(1rem,env(safe-area-inset-left))-max(1rem,env(safe-area-inset-right)))] max-w-[420px] items-start gap-3 rounded-xl border border-border border-l-4 bg-card p-4 text-card-foreground shadow-lg ${accent}`}>
             <Icon aria-hidden="true" className={`mt-1 h-6 w-6 shrink-0 ${color}`} />
             <div className="min-w-0 flex-1" role={tone === "error" ? "alert" : "status"} aria-live={tone === "error" ? "assertive" : "polite"} aria-atomic="true">
