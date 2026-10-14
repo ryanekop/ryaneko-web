@@ -1,7 +1,8 @@
 'use client';
 
 import Image from "next/image";
-import { ExternalLink, Clock, Instagram } from "lucide-react";
+import { ExternalLink, Clock } from "lucide-react";
+import { Instagram } from "@/components/instagram-icon";
 import Link from 'next/link';
 import { motion } from "framer-motion";
 import { ThemeToggle } from "@/components/theme-toggle";

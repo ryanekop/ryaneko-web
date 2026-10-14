@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
-import { ArrowLeft, Check, CircleCheck, Clock3, Copy, Download, History, Loader2, RefreshCw, ShieldCheck } from "lucide-react";
+import { ArrowLeft, CalendarDays, Check, CircleCheck, Clock3, Copy, Download, History, KeyRound, Loader2, Monitor, Receipt, RefreshCw, ScanBarcode, ShieldCheck } from "lucide-react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { PurchaseConfetti } from "@/components/purchase-confetti";
@@ -82,19 +82,19 @@ export function SoftwareReceiptCard({ receipt }: { receipt: StoreReceipt }) {
                 <div aria-live="polite"><h2 className="font-semibold">{status.label}</h2><p className="mt-1 text-sm leading-6 text-muted-foreground">{status.description}</p></div>
             </div>
             <div className="p-5 sm:p-6">
-                <h3 className="text-xl font-bold">{receipt.productName}</h3>
+                <h3 className="flex items-center gap-2 text-xl font-bold"><Image src="/raw-file-copy-tool.png" alt="" width={32} height={32} className="h-8 w-8 shrink-0 object-contain" />{receipt.productName}</h3>
                 <dl className="my-5 grid gap-4 text-sm sm:grid-cols-2">
-                    <div><dt className="text-muted-foreground">{copy.date}</dt><dd className="mt-1 font-medium">{storeDate(receipt.createdAt, locale)}</dd></div>
-                    <div><dt className="text-muted-foreground">{copy.orderAmount}</dt><dd className="mt-1 font-medium">{storeMoney(receipt.amount, locale)}</dd></div>
-                    <div><dt className="text-muted-foreground">{copy.licenses}</dt><dd className="mt-1 font-medium">{receipt.count} {copy.device}</dd></div>
-                    {receipt.os && <div><dt className="text-muted-foreground">{copy.os}</dt><dd className="mt-1 font-medium">{receipt.os}</dd></div>}
+                    <div><dt className="flex items-center gap-2 text-muted-foreground"><CalendarDays aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.date}</dt><dd className="mt-1 font-medium">{storeDate(receipt.createdAt, locale)}</dd></div>
+                    <div><dt className="flex items-center gap-2 text-muted-foreground"><Receipt aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.orderAmount}</dt><dd className="mt-1 font-medium">{storeMoney(receipt.amount, locale)}</dd></div>
+                    <div><dt className="flex items-center gap-2 text-muted-foreground"><KeyRound aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.licenses}</dt><dd className="mt-1 font-medium">{receipt.count} {copy.device}</dd></div>
+                    {receipt.os && <div><dt className="flex items-center gap-2 text-muted-foreground"><Monitor aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.os}</dt><dd className="mt-1 font-medium">{receipt.os}</dd></div>}
                 </dl>
                 {paymentUrl && <Button asChild size="lg" className="w-full sm:w-auto"><a href={paymentUrl} rel="noreferrer">{copy.continuePayment}</a></Button>}
                 {receipt.status === "expired" && <Button asChild size="lg"><Link href="/checkout/raw-file-copy-tool">{copy.buyAgain}</Link></Button>}
                 {delivered && (
                     <div className="space-y-6 border-t border-border pt-5">
                         <div>
-                            <h4 className="mb-3 text-sm font-semibold">{copy.serials}</h4>
+                            <h4 className="mb-3 flex items-center gap-2 text-sm font-semibold"><ScanBarcode aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.serials}</h4>
                             <div className="space-y-2">
                                 {receipt.serials.map((serial, index) => (
                                     <div key={`${serial}-${index}`} className="flex min-w-0 items-center justify-between gap-2 rounded-xl border border-border bg-muted/30 p-3">

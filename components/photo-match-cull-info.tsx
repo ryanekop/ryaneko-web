@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ExternalLink, Instagram, Mail, ShieldCheck, Wrench } from "lucide-react";
+import { ExternalLink, Mail, ShieldCheck, Wrench } from "lucide-react";
+import { Instagram } from "@/components/instagram-icon";
 
 import { PhotoMatchCullShell, usePhotoMatchCullLocale } from "@/components/photo-match-cull-shell";
 import { Button } from "@/components/ui/button";

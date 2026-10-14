@@ -4,9 +4,9 @@ import {
   ArrowUpRight,
   Download,
   Flame,
-  Instagram,
   ShoppingBag,
 } from "lucide-react";
+import { Instagram } from "@/components/instagram-icon";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 

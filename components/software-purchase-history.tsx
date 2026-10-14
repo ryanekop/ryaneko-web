@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { ArrowLeft, ArrowRight, History, Loader2, Mail, RefreshCw } from "lucide-react";
+import { ArrowLeft, ArrowRight, History, Loader2, Mail, MailSearch, PencilLine, RefreshCw } from "lucide-react";
 
 import { SoftwareReceiptCard, SoftwareStoreShell, StoreErrorNotice } from "@/components/software-order-receipt";
 import { Button } from "@/components/ui/button";
@@ -169,14 +169,20 @@ export function SoftwarePurchaseHistory() {
                         </form> : <div>
                             <h2 className="flex items-center gap-2 text-lg font-semibold"><Mail aria-hidden="true" className="h-5 w-5 shrink-0 text-emerald-700 dark:text-emerald-300" />{copy.otpTitle}</h2>
                             <p className="mt-2 break-all text-sm font-medium">{email}</p>
-                            <p className="mt-3 text-sm leading-6 text-muted-foreground">{copy.otpDescription}</p>
+                            <div className="mt-3 flex items-start gap-3 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-amber-900 dark:text-amber-100">
+                                <MailSearch aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-amber-700 dark:text-amber-300" />
+                                <div className="min-w-0">
+                                    <h3 className="text-sm font-semibold leading-6">{copy.otpHelpTitle}</h3>
+                                    <p className="mt-1 text-sm leading-6">{copy.otpDescription}</p>
+                                </div>
+                            </div>
                             <form onSubmit={(event) => void verifyOtp(event)} className="mt-5 space-y-4">
                                 <label className="block text-sm font-medium" htmlFor="history-otp">{copy.otp}<input id="history-otp" name="code" type="text" inputMode="numeric" autoComplete="one-time-code" required pattern="[0-9]{6}" minLength={6} maxLength={6} value={code} onChange={(event) => setCode(event.target.value.replace(/[^0-9]/g, ""))} disabled={busy !== null} className={`${inputClassName} text-center font-mono text-2xl tracking-[0.4em]`} /></label>
                                 <Button type="submit" size="lg" className="w-full" disabled={busy !== null || code.length !== 6}>{busy === "verify" && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}{busy === "verify" ? copy.verifying : copy.verify}</Button>
                             </form>
                             <div className="mt-4 flex flex-wrap justify-between gap-2">
-                                <Button type="button" variant="ghost" disabled={busy !== null || remaining > 0} onClick={() => void requestOtp()}>{remaining > 0 ? `${copy.resendWait} ${remaining} ${copy.seconds}` : copy.resend}</Button>
-                                <Button type="button" variant="ghost" disabled={busy !== null} onClick={() => { setRequested(false); setCode(""); setError(null); }}>{copy.changeEmail}</Button>
+                                <Button type="button" variant="ghost" className="gap-2" disabled={busy !== null || remaining > 0} onClick={() => void requestOtp()}><RefreshCw aria-hidden="true" className="h-4 w-4 shrink-0" />{remaining > 0 ? `${copy.resendWait} ${remaining} ${copy.seconds}` : copy.resend}</Button>
+                                <Button type="button" variant="ghost" className="gap-2" disabled={busy !== null} onClick={() => { setRequested(false); setCode(""); setError(null); }}><PencilLine aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.changeEmail}</Button>
                             </div>
                         </div>}
                     </div>

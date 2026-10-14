@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { AlertTriangle, ArrowRight, Instagram, Loader2, Mail, Megaphone, Monitor, Phone, ShieldCheck, User } from "lucide-react";
+import { AlertTriangle, ArrowRight, Loader2, Mail, Megaphone, Monitor, Phone, ShieldCheck, User } from "lucide-react";
+import { Instagram } from "@/components/instagram-icon";
 import { CheckoutReviewDialog, type CheckoutReview } from "@/components/checkout-review-dialog";
 
 import { SoftwareStoreShell, StoreErrorNotice } from "@/components/software-order-receipt";
