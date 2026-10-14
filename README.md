@@ -25,6 +25,15 @@ The backend rollout and local database/service test instructions are in
 `ryaneko-license/docs/software-store-rollout.md`. Preparing or building the web
 does not apply that migration or deploy either project.
 
+Checkout purchase notifications use the license backend's public
+`GET /api/store/recent-purchases` endpoint. It returns only masked buyer details,
+opaque identifiers and real amounts for the latest 20 `paid`/`settled` Mayar RAW
+digital-product purchases. The backend caches this feed for one hour; visible
+browser tabs refresh when `refreshAfter` expires. Failed refreshes retain the
+previous masked feed, while an empty/unavailable feed does not affect checkout.
+Deploy this backend endpoint before publishing the website update. This feed
+does not include the separate Payment Requests used by the newer web checkout.
+
 ## Development
 
 First, run the development server:

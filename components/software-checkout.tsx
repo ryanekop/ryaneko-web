@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { AlertTriangle, ArrowRight, Loader2, Mail, Megaphone, Monitor, Phone, ShieldCheck, User } from "lucide-react";
 import { Instagram } from "@/components/instagram-icon";
 import { CheckoutReviewDialog, type CheckoutReview } from "@/components/checkout-review-dialog";
+import { RecentPurchaseToast } from "@/components/recent-purchase-toast";
 
 import { SoftwareStoreShell, StoreErrorNotice } from "@/components/software-order-receipt";
 import { Button } from "@/components/ui/button";
@@ -137,7 +138,8 @@ export function SoftwareCheckout() {
     }
 
     return (
-        <SoftwareStoreShell title={copy.checkoutTitle} description={copy.checkoutDescription}>
+        <SoftwareStoreShell title={copy.checkoutTitle} description={copy.checkoutDescription} checkoutHeading>
+            <RecentPurchaseToast paused={review !== null || submitting} />
             <CheckoutReviewDialog review={review} busy={submitting} onCancel={() => setReview(null)} onConfirm={() => void confirmPayment()} />
             {loading ? <p role="status" className="flex items-center gap-2 text-sm text-muted-foreground"><Loader2 className="h-4 w-4 animate-spin" />{copy.loading}</p> : !available ? (
                 <div className="max-w-2xl space-y-4 rounded-2xl border border-border bg-card p-6">

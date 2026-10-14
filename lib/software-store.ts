@@ -77,6 +77,30 @@ export interface StoreHistoryResponse {
 export const softwareStoreEnabled = process.env.NEXT_PUBLIC_SOFTWARE_STORE_ENABLED === "true";
 export const softwareStoreApiUrl = process.env.NEXT_PUBLIC_SOFTWARE_STORE_API_URL || "https://license.ryanekoapp.web.id/api/store";
 
+export interface RecentPurchase {
+    id: string;
+    name: string;
+    email: string;
+    amount: number;
+    productName: "RAW File Copy Tool";
+}
+
+export interface RecentPurchasesResponse {
+    purchases: RecentPurchase[];
+    refreshedAt: string | null;
+    refreshAfter: string;
+}
+
+export async function getRecentPurchases(signal?: AbortSignal): Promise<RecentPurchasesResponse> {
+    const response = await fetch(`${softwareStoreApiUrl.replace(/\/$/, "")}/recent-purchases`, { cache: "no-store", credentials: "omit", signal });
+    const result = await readApiResponse<RecentPurchasesResponse>(response);
+    if (!Array.isArray(result.purchases) || typeof result.refreshAfter !== "string") throw new Error("Invalid purchase feed");
+    return {
+        ...result,
+        purchases: result.purchases.filter((item) => item && typeof item.id === "string" && typeof item.name === "string" && typeof item.email === "string" && item.productName === "RAW File Copy Tool" && Number.isFinite(item.amount) && item.amount > 0).slice(0, 20),
+    };
+}
+
 const draftKey = "raw-file-copy-checkout-draft";
 const receiptKey = "raw-file-copy-receipt-access";
 const sessionKey = "raw-file-copy-history-session";

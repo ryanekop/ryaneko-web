@@ -8,12 +8,13 @@ import { ArrowLeft, CalendarDays, Check, CircleCheck, Clock3, Copy, Download, Hi
 import { LanguageToggle } from "@/components/language-toggle";
 import { PurchaseConfetti } from "@/components/purchase-confetti";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { StoreToast } from "@/components/store-toast";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
 import { getStoreCopy, getStoreError, getStoreStatusCopy, getUnknownPaymentCopy } from "@/lib/software-store-i18n";
 import { safeStoreUrl, StoreApiError, storeDate, storeMoney, storeRequest, type ReceiptAccess, type StoreReceipt } from "@/lib/software-store";
 
-export function SoftwareStoreShell({ title, description, titleIcon, children }: { title: string; description?: string; titleIcon?: ReactNode; children: ReactNode }) {
+export function SoftwareStoreShell({ title, description, titleIcon, children, checkoutHeading = false }: { title: string; description?: string; titleIcon?: ReactNode; children: ReactNode; checkoutHeading?: boolean }) {
     const { locale } = useI18n();
     const copy = getStoreCopy(locale);
     return (
@@ -33,8 +34,8 @@ export function SoftwareStoreShell({ title, description, titleIcon, children }: 
                     <a href="/purchase-history" className="inline-flex items-center gap-2 font-medium underline underline-offset-4 hover:text-primary"><History aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.history}</a>
                 </div>
                 <div className="mb-8 max-w-2xl">
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-emerald-700 dark:text-emerald-300">{copy.product}</p>
-                    <h1 className="flex items-center gap-3 text-3xl font-bold tracking-tight sm:text-4xl">{titleIcon}{title}</h1>
+                    {!checkoutHeading && <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-emerald-700 dark:text-emerald-300">{copy.product}</p>}
+                    <h1 className={`flex items-center gap-3 font-bold tracking-tight ${checkoutHeading ? "text-2xl text-black sm:text-3xl dark:text-white" : "text-3xl sm:text-4xl"}`}>{titleIcon}{title}</h1>
                     {description && <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">{description}</p>}
                 </div>
                 {children}
@@ -52,7 +53,9 @@ export function SoftwareReceiptCard({ receipt }: { receipt: StoreReceipt }) {
     const { locale } = useI18n();
     const copy = getStoreCopy(locale);
     const status = receipt.paymentStatusKnown === false ? getUnknownPaymentCopy(locale) : getStoreStatusCopy(receipt.status, locale);
-    const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+    const [copyFeedback, setCopyFeedback] = useState<{ index: number; success: boolean } | null>(null);
+    const copiedIndex = copyFeedback?.success ? copyFeedback.index : null;
+    const [toast, setToast] = useState<{ success: boolean } | null>(null);
     const [copyError, setCopyError] = useState(false);
     const fulfilled = receipt.status === "fulfilled";
     const delivered = fulfilled || receipt.kind === "legacy";
@@ -60,23 +63,37 @@ export function SoftwareReceiptCard({ receipt }: { receipt: StoreReceipt }) {
     const downloads = receipt.downloads.map((download) => ({ ...download, url: safeStoreUrl(download.url) })).filter((download) => download.url);
 
     useEffect(() => {
-        if (copiedIndex === null) return;
-        const timeout = window.setTimeout(() => setCopiedIndex(null), 2500);
+        if (copyFeedback === null) return;
+        const timeout = window.setTimeout(() => setCopyFeedback(null), 2500);
         return () => window.clearTimeout(timeout);
-    }, [copiedIndex]);
+    }, [copyFeedback]);
+
+    useEffect(() => {
+        if (toast === null) return;
+        const timeout = window.setTimeout(() => setToast(null), toast.success ? 3000 : 5000);
+        return () => window.clearTimeout(timeout);
+    }, [toast]);
 
     async function copySerial(serial: string, index: number) {
         try {
             await navigator.clipboard.writeText(serial);
-            setCopiedIndex(index);
+            setCopyFeedback({ index, success: true });
+            setToast({ success: true });
             setCopyError(false);
         } catch {
+            setCopyFeedback({ index, success: false });
+            setToast({ success: false });
             setCopyError(true);
         }
     }
 
     return (
         <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+            {toast && <StoreToast tone={toast.success ? "success" : "error"} onClose={() => setToast(null)} closeLabel={locale === "id" ? "Tutup notifikasi" : "Dismiss notification"}>
+                {toast.success
+                    ? (locale === "id" ? "Lisensi Berhasil Disalin" : "License Copied Successfully")
+                    : (locale === "id" ? "Lisensi Gagal Disalin. Pilih Teks Lisensi Untuk Menyalin Manual." : "Failed To Copy License. Select The License Text To Copy It Manually.")}
+            </StoreToast>}
             <div className={`flex items-start gap-3 border-b border-border p-5 sm:p-6 ${fulfilled ? "bg-emerald-500/10" : "bg-muted/40"}`}>
                 {fulfilled ? <CircleCheck className="mt-0.5 h-6 w-6 shrink-0 text-emerald-700 dark:text-emerald-300" /> : <Clock3 className="mt-0.5 h-6 w-6 shrink-0 text-muted-foreground" />}
                 <div aria-live="polite"><h2 className="font-semibold">{status.label}</h2><p className="mt-1 text-sm leading-6 text-muted-foreground">{status.description}</p></div>
