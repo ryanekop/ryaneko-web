@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { StoreToast } from "@/components/store-toast";
 import { useI18n } from "@/lib/i18n";
 import { getRecentPurchases, storeMoney, type RecentPurchase } from "@/lib/software-store";
@@ -94,10 +95,9 @@ export function RecentPurchaseToast({ paused }: { paused: boolean }) {
         try { window.sessionStorage.setItem(dismissedKey, "true"); } catch { /* Dismissal still lasts while this page is mounted. */ }
     }
 
-    if (!current || paused) return null;
-    return <StoreToast tone="purchase" verification="Transaction Verified by Mayar.ID" onClose={dismiss} closeLabel={locale === "id" ? "Tutup notifikasi pembelian" : "Dismiss purchase notifications"}>
+    return <AnimatePresence>{current && !paused && <StoreToast key="purchase-toast" tone="purchase" verification="Transaction Verified by Mayar.ID" onClose={dismiss} closeLabel={locale === "id" ? "Tutup notifikasi pembelian" : "Dismiss purchase notifications"}>
         {locale === "id"
             ? `${current.name} (${current.email}) baru saja membeli Produk ${current.productName}, senilai ${storeMoney(current.amount, locale)}`
             : `${current.name} (${current.email}) just purchased ${current.productName} for ${storeMoney(current.amount, locale)}`}
-    </StoreToast>;
+    </StoreToast>}</AnimatePresence>;
 }

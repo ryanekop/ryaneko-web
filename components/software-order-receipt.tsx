@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
+import { AnimatePresence } from "framer-motion";
 import { ArrowLeft, CalendarDays, Check, CircleCheck, Clock3, Copy, Download, History, KeyRound, Loader2, Monitor, Receipt, RefreshCw, ScanBarcode, ShieldCheck } from "lucide-react";
 
 import { LanguageToggle } from "@/components/language-toggle";
@@ -89,11 +90,11 @@ export function SoftwareReceiptCard({ receipt }: { receipt: StoreReceipt }) {
 
     return (
         <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-            {toast && <StoreToast tone={toast.success ? "success" : "error"} onClose={() => setToast(null)} closeLabel={locale === "id" ? "Tutup notifikasi" : "Dismiss notification"}>
+            <AnimatePresence>{toast && <StoreToast key="copy-toast" tone={toast.success ? "success" : "error"} onClose={() => setToast(null)} closeLabel={locale === "id" ? "Tutup notifikasi" : "Dismiss notification"}>
                 {toast.success
                     ? (locale === "id" ? "Lisensi Berhasil Disalin" : "License Copied Successfully")
                     : (locale === "id" ? "Lisensi Gagal Disalin. Pilih Teks Lisensi Untuk Menyalin Manual." : "Failed To Copy License. Select The License Text To Copy It Manually.")}
-            </StoreToast>}
+            </StoreToast>}</AnimatePresence>
             <div className={`flex items-start gap-3 border-b border-border p-5 sm:p-6 ${fulfilled ? "bg-emerald-500/10" : "bg-muted/40"}`}>
                 {fulfilled ? <CircleCheck className="mt-0.5 h-6 w-6 shrink-0 text-emerald-700 dark:text-emerald-300" /> : <Clock3 className="mt-0.5 h-6 w-6 shrink-0 text-muted-foreground" />}
                 <div aria-live="polite"><h2 className="font-semibold">{status.label}</h2><p className="mt-1 text-sm leading-6 text-muted-foreground">{status.description}</p></div>
