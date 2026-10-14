@@ -26,7 +26,7 @@ const bioLinks: BioLink[] = [
   {
     title: "RAW File Copy Tool",
     description: "Mac, Windows & Android",
-    url: "https://ryaneko.myr.id/pl/raw-file-copy-tool",
+    url: "https://ryanekoapp.web.id/checkout/raw-file-copy-tool",
     image: "/links-raw-file-copy-tool.webp",
     group: "order",
     highlighted: true,
