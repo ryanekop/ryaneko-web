@@ -7,6 +7,7 @@ export interface StoreCustomer {
     mobile: string;
     instagram: string;
     os: string;
+    deviceOs?: string[];
     source: string;
 }
 
@@ -26,6 +27,7 @@ export interface StoreOrderSummary {
     amount: number | null;
     status: StoreOrderStatus;
     os: string | null;
+    deviceOs?: string[] | null;
     paymentStatusKnown?: boolean;
 }
 
@@ -171,6 +173,7 @@ export function readCheckoutDraft(): CheckoutDraft | null {
     const draft = readSessionStorage<CheckoutDraft>(draftKey);
     if (!draft || !tokenPattern.test(draft.token) || ![1, 2, 3].includes(draft.count)) return null;
     if (!draft.customer || ["name", "email", "mobile", "instagram", "os", "source"].some((key) => typeof draft.customer[key as keyof StoreCustomer] !== "string")) return null;
+    if (draft.customer.deviceOs !== undefined && (!Array.isArray(draft.customer.deviceOs) || draft.customer.deviceOs.length !== draft.count || draft.customer.deviceOs.some((os) => typeof os !== "string"))) return null;
     return draft;
 }
 

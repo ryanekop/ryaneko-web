@@ -105,7 +105,7 @@ export function SoftwareReceiptCard({ receipt }: { receipt: StoreReceipt }) {
                     <div><dt className="flex items-center gap-2 text-muted-foreground"><CalendarDays aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.date}</dt><dd className="mt-1 font-medium">{storeDate(receipt.createdAt, locale)}</dd></div>
                     <div><dt className="flex items-center gap-2 text-muted-foreground"><Receipt aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.orderAmount}</dt><dd className="mt-1 font-medium">{storeMoney(receipt.amount, locale)}</dd></div>
                     <div><dt className="flex items-center gap-2 text-muted-foreground"><KeyRound aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.licenses}</dt><dd className="mt-1 font-medium">{receipt.count} {copy.device}</dd></div>
-                    {receipt.os && <div><dt className="flex items-center gap-2 text-muted-foreground"><Monitor aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.os}</dt><dd className="mt-1 font-medium">{receipt.os}</dd></div>}
+                    {receipt.os && <div><dt className="flex items-center gap-2 text-muted-foreground"><Monitor aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.os}</dt><dd className="mt-1 space-y-1 font-medium">{receipt.deviceOs?.length ? receipt.deviceOs.map((os, index) => <div key={index}>Device {index + 1}: {os}</div>) : receipt.os}</dd></div>}
                 </dl>
                 {paymentUrl && <Button asChild size="lg" className="w-full sm:w-auto"><a href={paymentUrl} rel="noreferrer">{copy.continuePayment}</a></Button>}
                 {receipt.status === "expired" && <Button asChild size="lg"><Link href="/checkout/raw-file-copy-tool">{copy.buyAgain}</Link></Button>}

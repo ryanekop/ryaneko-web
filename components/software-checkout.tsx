@@ -24,6 +24,8 @@ export function SoftwareCheckout() {
     const paymentInFlight = useRef(false);
     const [customer, setCustomer] = useState<StoreCustomer>(emptyCustomer);
     const [count, setCount] = useState<LicenseCount>(1);
+    const [deviceOs, setDeviceOs] = useState<string[]>([""]);
+    const [sameOs, setSameOs] = useState(false);
     const [draft, setDraft] = useState<CheckoutDraft | null>(null);
     const [catalog, setCatalog] = useState<StoreCatalog | null>(null);
     const [loading, setLoading] = useState(true);
@@ -45,6 +47,7 @@ export function SoftwareCheckout() {
                     setDraft(saved);
                     setCustomer(saved.customer);
                     setCount(saved.count);
+                    setDeviceOs(saved.customer.deviceOs ?? Array(saved.count).fill(saved.customer.os));
                 }
             } catch (requestError) {
                 if (!controller.signal.aborted) setError(requestError);
@@ -65,12 +68,22 @@ export function SoftwareCheckout() {
         setCustomer((current) => ({ ...current, [field]: value }));
     }
 
+    function changeCount(next: LicenseCount) {
+        setCount(next);
+        setDeviceOs((current) => Array.from({ length: next }, (_, index) => sameOs ? current[0] : current[index] ?? ""));
+    }
+
+    function changeOs(index: number, value: string) {
+        setDeviceOs((current) => current.map((os, position) => sameOs || position === index ? value : os));
+        if (index === 0) updateCustomer("os", value);
+    }
+
     function submit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         if (paymentInFlight.current || !available || !selectedPackage || !event.currentTarget.reportValidity()) return;
         const normalized: StoreCustomer = {
             name: customer.name.trim(), email: customer.email.trim().toLowerCase(), mobile: customer.mobile.trim(),
-            instagram: customer.instagram.trim(), os: customer.os, source: customer.source,
+            instagram: customer.instagram.trim(), os: deviceOs[0], source: customer.source, deviceOs: deviceOs.slice(0, count),
         };
         setReview({ customer: normalized, count, amount: selectedPackage.price });
     }
@@ -87,7 +100,10 @@ export function SoftwareCheckout() {
         let nextDraft: CheckoutDraft;
         try {
             const previous = draft || readCheckoutDraft();
-            const samePurchase = previous?.count === count && JSON.stringify(previous.customer) === JSON.stringify(normalized);
+            const previousCustomer = previous ? { ...previous.customer, deviceOs: previous.customer.deviceOs ?? Array(previous.count).fill(previous.customer.os) } : null;
+            const samePurchase = previous?.count === count && previousCustomer !== null &&
+                (["name", "email", "mobile", "instagram", "os", "source"] as const).every((field) => previousCustomer[field] === normalized[field]) &&
+                JSON.stringify(previousCustomer.deviceOs) === JSON.stringify(normalized.deviceOs);
             const superseded = previous?.supersededCheckout || (previous?.submitted || previous?.orderId ? {
                 customer: previous.customer, count: previous.count, token: previous.token, orderId: previous.orderId,
             } : undefined);
@@ -158,7 +174,10 @@ export function SoftwareCheckout() {
                             <label className="text-sm font-medium sm:col-span-2" htmlFor="store-email"><span className="inline-flex items-center gap-2"><Mail aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.email}</span><input id="store-email" name="email" placeholder={copy.emailPlaceholder} type="email" autoComplete="email" required maxLength={254} value={customer.email} onChange={(event) => updateCustomer("email", event.target.value)} className={inputClassName} aria-describedby="store-email-help" /><span id="store-email-help" className="mt-2 flex items-start gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-xs font-normal leading-5 text-amber-900 dark:text-amber-100"><AlertTriangle aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />{reviewCopy.emailWarning}</span></label>
                             <label className="text-sm font-medium" htmlFor="store-mobile"><span className="inline-flex items-center gap-2"><Phone aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.mobile}</span><input id="store-mobile" name="mobile" placeholder={copy.mobilePlaceholder} type="tel" autoComplete="tel" required minLength={8} maxLength={24} pattern="[+0-9 \(\)\-]{8,24}" value={customer.mobile} onChange={(event) => updateCustomer("mobile", event.target.value)} className={inputClassName} aria-describedby="store-mobile-help" /><span id="store-mobile-help" className="mt-2 flex items-start gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-xs font-normal leading-5 text-amber-900 dark:text-amber-100"><AlertTriangle aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />{reviewCopy.phoneWarning}</span></label>
                             <label className="text-sm font-medium" htmlFor="store-instagram"><span className="inline-flex items-center gap-2"><Instagram aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.instagram}</span><input id="store-instagram" name="instagram" placeholder={copy.instagramPlaceholder} autoComplete="off" required maxLength={31} pattern="@?[A-Za-z0-9._]{1,30}" value={customer.instagram} onChange={(event) => updateCustomer("instagram", event.target.value)} className={inputClassName} aria-describedby="store-instagram-help" /><span id="store-instagram-help" className="mt-2 block text-xs font-normal leading-5 text-muted-foreground">{copy.instagramHelp}</span></label>
-                            <label className="text-sm font-medium" htmlFor="store-os"><span className="inline-flex items-center gap-2"><Monitor aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.os}</span><select id="store-os" name="os" required value={customer.os} onChange={(event) => updateCustomer("os", event.target.value)} className={inputClassName}><option value="">{copy.select}</option>{catalog.osOptions.map((option) => <option key={option} value={option}>{option}</option>)}</select></label>
+                            <div className="space-y-3">
+                                {count > 1 && <label className="flex items-start gap-2 text-sm"><input type="checkbox" checked={sameOs} onChange={(event) => { setSameOs(event.target.checked); if (event.target.checked) setDeviceOs(Array(count).fill(deviceOs[0])); }} className="mt-1 accent-emerald-600" />{locale === "id" ? "Semua device menggunakan OS yang sama" : "All devices use the same OS"}</label>}
+                                {(sameOs ? deviceOs.slice(0, 1) : deviceOs).map((os, index) => <label key={index} className="block text-sm font-medium" htmlFor={`store-os-${index}`}><span className="inline-flex items-center gap-2"><Monitor aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.os}{!sameOs && ` — Device ${index + 1}`}</span><select id={`store-os-${index}`} name={`deviceOs-${index}`} required value={os} onChange={(event) => changeOs(index, event.target.value)} className={inputClassName}><option value="">{copy.select}</option>{catalog.osOptions.map((option) => <option key={option} value={option}>{option}</option>)}</select></label>)}
+                            </div>
                             <label className="text-sm font-medium" htmlFor="store-source"><span className="inline-flex items-center gap-2"><Megaphone aria-hidden="true" className="h-4 w-4 shrink-0" />{copy.source}</span><select id="store-source" name="source" required value={customer.source} onChange={(event) => updateCustomer("source", event.target.value)} className={inputClassName}><option value="">{copy.select}</option>{catalog.sources.map((option) => <option key={option} value={option}>{option}</option>)}</select></label>
                         </div>
                     </fieldset>
@@ -167,7 +186,7 @@ export function SoftwareCheckout() {
                             <legend className="mb-4 text-lg font-semibold">{copy.packages}</legend>
                             <div className="space-y-3">{catalog.packages.map((item) => (
                                 <label key={item.count} className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 transition-colors ${item.count === count ? "border-emerald-500 bg-emerald-500/10" : "border-border hover:bg-muted/40"}`}>
-                                    <input type="radio" name="count" value={item.count} checked={item.count === count} onChange={() => setCount(item.count)} className="h-4 w-4 accent-emerald-600" required />
+                                    <input type="radio" name="count" value={item.count} checked={item.count === count} onChange={() => changeCount(item.count)} className="h-4 w-4 accent-emerald-600" required />
                                     <span className="flex-1 text-sm font-semibold">{item.count} {copy.device}</span>
                                     <span className="flex shrink-0 flex-col items-end gap-1">
                                         <span className="text-xs text-muted-foreground line-through">{storeMoney(175000 * item.count, locale)}</span>

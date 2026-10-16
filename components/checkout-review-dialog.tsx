@@ -57,7 +57,7 @@ export function CheckoutReviewDialog({ review, busy, onCancel, onConfirm }: {
                 <div><dt className="flex items-center gap-2 text-muted-foreground"><Mail aria-hidden="true" className="h-4 w-4" />{copy.email}</dt><dd className="mt-1 break-all font-semibold">{review.customer.email}</dd></div>
                 <div><dt className="flex items-center gap-2 text-muted-foreground"><Phone aria-hidden="true" className="h-4 w-4" />{copy.mobile}</dt><dd className="mt-1 break-all font-semibold">{review.customer.mobile}</dd></div>
                 <div><dt className="text-muted-foreground">{copy.name}</dt><dd className="mt-1 break-words font-medium">{review.customer.name}</dd></div>
-                <div><dt className="text-muted-foreground">{copy.os}</dt><dd className="mt-1 font-medium">{review.customer.os}</dd></div>
+                <div><dt className="text-muted-foreground">{copy.os}</dt><dd className="mt-1 space-y-1 font-medium">{(review.customer.deviceOs ?? Array(review.count).fill(review.customer.os)).map((os, index) => <div key={index}>Device {index + 1}: {os}</div>)}</dd></div>
                 <div className="flex justify-between gap-3 border-t border-border pt-4"><dt>{review.count} {copy.device}</dt><dd className="font-bold">{storeMoney(review.amount, locale)}</dd></div>
             </dl>
             <div className="flex flex-col gap-3 sm:flex-row">
