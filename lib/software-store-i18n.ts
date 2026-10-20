@@ -2,6 +2,7 @@ import type { Locale } from "@/lib/i18n";
 import { StoreApiError, type StoreOrderStatus } from "@/lib/software-store";
 
 const id = {
+    installationTutorials: "Tutorial Instalasi", installMac: "Tutorial Install Mac", installWindows: "Tutorial Install Windows",
     otpHelpTitle: "Kode belum terlihat? Cek Spam/Junk",
     namePlaceholder: "Nama Kamu", emailPlaceholder: "admin@example.com", mobilePlaceholder: "081234567890", instagramPlaceholder: "@username",
     product: "RAW File Copy Tool", history: "Riwayat pembelian", backProduct: "Kembali ke produk", checkoutTitle: "Checkout RAW File Copy Tool", checkoutDescription: "Isi data, pilih jumlah device, lalu bayar melalui Mayar. Download dan serial akan tersedia di web serta email setelah pembayaran terverifikasi.",
@@ -9,6 +10,7 @@ const id = {
 };
 
 const en: Record<keyof typeof id, string> = {
+    installationTutorials: "Installation Tutorials", installMac: "Mac Installation Tutorial", installWindows: "Windows Installation Tutorial",
     otpHelpTitle: "Code not showing up? Check Spam/Junk",
     namePlaceholder: "Your Name", emailPlaceholder: "admin@example.com", mobilePlaceholder: "081234567890", instagramPlaceholder: "@username",
     product: "RAW File Copy Tool", history: "Purchase history", backProduct: "Back to product", checkoutTitle: "Checkout RAW File Copy Tool", checkoutDescription: "Enter your details, choose the device count, and pay through Mayar. Your download and serials will be available on the web and by email after payment is verified.",

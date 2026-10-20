@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
 import { AnimatePresence } from "framer-motion";
-import { ArrowLeft, CalendarDays, Check, CircleCheck, Clock3, Copy, Download, History, KeyRound, Loader2, Monitor, Receipt, RefreshCw, ScanBarcode, ShieldCheck } from "lucide-react";
+import { Apple, ArrowLeft, CalendarDays, Check, CircleCheck, Clock3, Copy, Download, History, KeyRound, Loader2, Monitor, Receipt, RefreshCw, ScanBarcode, ShieldCheck } from "lucide-react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { PurchaseConfetti } from "@/components/purchase-confetti";
@@ -130,6 +130,13 @@ export function SoftwareReceiptCard({ receipt }: { receipt: StoreReceipt }) {
                             <h4 className="mb-3 text-sm font-semibold">{copy.download}</h4>
                             <div className="flex flex-wrap gap-2">{downloads.map((download) => <Button asChild key={`${download.label}-${download.url}`}><a href={download.url!} target="_blank" rel="noopener noreferrer"><Download className="mr-2 h-4 w-4" />{download.label}</a></Button>)}</div>
                         </div>}
+                        <div>
+                            <h4 className="mb-3 text-sm font-semibold">{copy.installationTutorials}</h4>
+                            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                                <Button asChild variant="outline"><a href="https://www.instagram.com/p/DQWhCrGk8SH/" target="_blank" rel="noopener noreferrer"><Apple aria-hidden="true" className="mr-2 h-4 w-4 shrink-0" />{copy.installMac}</a></Button>
+                                <Button asChild variant="outline"><a href="https://www.instagram.com/p/DPoZAedk8Ot/" target="_blank" rel="noopener noreferrer"><Monitor aria-hidden="true" className="mr-2 h-4 w-4 shrink-0" />{copy.installWindows}</a></Button>
+                            </div>
+                        </div>
                         <p className="flex items-start gap-2 text-xs leading-6 text-muted-foreground"><ShieldCheck className="mt-1 h-4 w-4 shrink-0" />{copy.emailNotice}</p>
                     </div>
                 )}
